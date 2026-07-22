@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>船越ＨＰ</title>
+<script>
+</script>
+</head>
+<body style="background-color:white;" onload="window.close()">
+<body>
+しばらくお待ちください
+</body>
+</html>
+

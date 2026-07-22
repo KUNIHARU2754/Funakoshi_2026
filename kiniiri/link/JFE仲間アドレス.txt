@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 9.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>お引越しのお知らせ</TITLE>
+</HEAD>
+<BODY>
+<P><IMG src="logo134.gif" width="397" height="57" border="0"></P>
+<P><B><FONT size="+3">回線を光に変更したついでに、プロバイダを変更したため、<BR>
+アドレスが変わりました。<BR>
+新しいアドレスは、</FONT></B></P>
+<P><A href="http://ww51.tiki.ne.jp/~zin-zin/"><FONT size="+3">http://ww51.tiki.ne.jp/~zin-zin/</FONT></A></P>
+<P><FONT size="+3"><B>です</B></FONT><BR>
+<IMG src="sin_fz1.jpg" width="199" height="54" border="0"><BR>
+<B><FONT size="+3">新しいサイトもよろしくお願いします。</FONT></B></P>
+</BODY>
+</HTML>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ナポレオン・ヒル研究</title>
+  <style>
+    :root {
+      --navy: #24364b;
+      --gold: #b28a3b;
+      --paper: #fffdf7;
+      --ink: #252525;
+      --soft: #f4efe2;
+      --line: #d8cfbd;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eee9df;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", "BIZ UDPMincho", serif;
+      line-height: 1.9;
+    }
+
+    #top { scroll-margin-top: 92px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 68px;
+      padding: 10px max(16px, calc((100vw - 980px) / 2));
+      color: #fff;
+      background: rgba(36, 54, 75, 0.97);
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45em;
+      min-height: 42px;
+      padding: 7px 13px;
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 7px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      font-size: 0.95rem;
+      transition: background .2s, transform .2s;
+    }
+
+    .nav-button:hover,
+    .nav-button:focus-visible {
+      background: rgba(255,255,255,0.22);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .icon { font-size: 1.2rem; line-height: 1; }
+
+    .site-title {
+      margin-left: 6px;
+      font-size: clamp(1rem, 2.3vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    main {
+      width: min(980px, calc(100% - 28px));
+      margin: 28px auto 70px;
+      padding: clamp(24px, 5vw, 58px);
+      background: var(--paper);
+      box-shadow: 0 8px 30px rgba(61, 50, 31, 0.14);
+      border: 1px solid #ddd4c2;
+    }
+
+    .hero {
+      padding: 22px 12px 32px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.75rem, 5vw, 2.8rem);
+      letter-spacing: 0.08em;
+      line-height: 1.45;
+    }
+
+    .hero p {
+      margin: 12px 0 0;
+      color: #6b5a3e;
+      font-size: 1.08rem;
+    }
+
+    .toc {
+      margin: 34px 0 54px;
+      padding: 25px clamp(18px, 4vw, 34px);
+      background: var(--soft);
+      border-left: 5px solid var(--gold);
+      border-radius: 4px;
+    }
+
+    .toc h2 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: block;
+      padding: 4px 7px;
+      color: #263e58;
+      text-decoration: none;
+      border-bottom: 1px dotted #aa9e89;
+    }
+
+    .toc a:hover,
+    .toc a:focus-visible {
+      color: #7b5410;
+      background: rgba(255,255,255,.65);
+      outline: none;
+    }
+
+    section {
+      margin: 0 0 68px;
+      scroll-margin-top: 92px;
+    }
+
+    section h2 {
+      margin: 0 0 22px;
+      padding: 8px 14px;
+      color: #fff;
+      background: var(--navy);
+      border-left: 8px solid var(--gold);
+      font-size: clamp(1.25rem, 3vw, 1.65rem);
+      letter-spacing: 0.05em;
+    }
+
+    p { margin: 0 0 1.05em; }
+
+    .page {
+      display: inline-block;
+      margin-left: .5em;
+      color: #75684f;
+      font-family: "Yu Gothic", sans-serif;
+      font-size: .82em;
+      white-space: nowrap;
+    }
+
+    .steps {
+      margin: 18px 0 24px;
+      padding: 18px 22px 12px 48px;
+      background: #faf6ec;
+      border: 1px solid var(--line);
+    }
+
+    .steps li { margin-bottom: .8em; }
+
+    .note {
+      margin: 20px 0;
+      padding: 14px 18px;
+      background: #fff7e0;
+      border-left: 4px solid #c49128;
+    }
+
+    .warning {
+      color: #a12520;
+      font-weight: 700;
+    }
+
+    .unfinished {
+      min-height: 140px;
+      padding: 26px;
+      color: #786f60;
+      background: #faf8f2;
+      border: 1px dashed #bdb39f;
+      text-align: center;
+    }
+
+    .back-top {
+      display: block;
+      width: fit-content;
+      margin: 28px 0 0 auto;
+      color: #465d74;
+      text-decoration: none;
+      font-family: "Yu Gothic", sans-serif;
+      font-size: .92rem;
+    }
+
+    footer {
+      padding-top: 22px;
+      color: #756d60;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 680px) {
+      .topbar { flex-wrap: wrap; }
+      .site-title { width: 100%; margin: 1px 0 0; }
+      .toc-list { grid-template-columns: 1fr; }
+      main { width: min(100% - 16px, 980px); padding: 24px 18px 38px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+
+  <header class="topbar" aria-label="ページ上部の案内">
+    <a class="nav-button" href="../shosai.htm" title="一つ上のフォルダーにある shosai.htm へ戻ります">
+      <span class="icon" aria-hidden="true">⌂</span><span>表紙に戻る</span>
+    </a>
+    <a class="nav-button" href="#top" title="このページの先頭へ戻ります">
+      <span class="icon" aria-hidden="true">↥</span><span>元に戻る</span>
+    </a>
+    <div class="site-title">ナポレオン・ヒル研究</div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>ナポレオン・ヒル<span style="font-family:'ＭＳ ゴシック'; font-size:40px; color:#ff0000;">作成中</span><br>
+     「巨富を築く思考法」</h1>
+      <p><h1>成功哲学13の原則</h1></p>
+    </div>
+
+    <nav class="toc" aria-label="目次">
+      <h2>目次</h2>
+      <ul class="toc-list">
+        <li><a href="#intro">初めに</a></li>
+        <li><a href="#desire">1．願望</a></li>
+        <li><a href="#faith">2．信念</a></li>
+        <li><a href="#autosuggestion">3．自己暗示</a></li>
+        <li><a href="#knowledge">4．専門知識</a></li>
+        <li><a href="#imagination">5．想像力</a></li>
+        <li><a href="#planning">6．計画</a></li>
+        <li><a href="#decision">7．決断</a></li>
+        <li><a href="#persistence">8．忍耐力</a></li>
+        <li><a href="#mastermind">9．マスターマインド</a></li>
+        <li><a href="#transmutation">10．性エネルギーの転換（昇華）</a></li>
+        <li><a href="#subconscious">11．潜在意識</a></li>
+        <li><a href="#brain">12．脳</a></li>
+        <li><a href="#sixth-sense">13．第六感</a></li>
+      </ul>
+    </nav>
+
+    <section id="intro">
+      <h2>初めに</h2>
+      <p>明確な目的や、粘り強さ、富や豊かさに変えようとする燃えるような願望と一体となったとき、思考はとてつもなく強力なものになる。<span class="page">32頁</span></p>
+      <p>明確な目的を持ち、わき目もふらずにその実現だけを考えていれば、人はとてつもなく大きなことを成し遂げられる。<span class="page">34頁</span></p>
+      <a class="back-top" href="#top">▲ ページの先頭へ</a>
+    </section>
+
+    <section id="desire">
+      <h2>1．願望</h2>
+      <p><strong>富への願望を現実化するための「願望実現のための6ステップ」</strong><span class="page">62頁</span></p>
+      <ol class="steps">
+        <li>望むものを明確にする。</li>
+        <li>望むものを得る引き換えに、何を提供するか決める。（何を犠牲にするか）</li>
+        <li>望むものをいつまでに得るか、明確な期限を決める。</li>
+        <li>願望実現のための明確な計画を立て、すぐに実行する。（たとえ準備が整っていなくても）</li>
+        <li>上記の内容を記した簡潔な文章を作成する。</li>
+        <li>毎日二回、就寝前と起床時に、その文章を声に出して読む。（中村天風）<span class="page">62頁</span></li>
+      </ol>
+      <p>大きな富を手にした自分の姿を想像できなければ、銀行口座の残高は増えない。<span class="page">64頁</span></p>
+      <p>欠かせない資質がある。それは明確な目的、つまり自分が何を求めているかを知っていることであり、それを手に入れたいという強い願望を持っていることだ。<span class="page">65頁</span></p>
+      <p>何者かになりたい、何かを成し遂げたい、という燃えるような願望こそが、夢想家の出発点だ。<span class="page">68頁</span></p>
+      <p>信念に裏打ちされた願望に、不可能という言葉は無縁だった。<span class="page">75頁</span></p>
+      <p>私が知る成功哲学はどれも、逆境は、苦しみと同じだけのメリットをもたらしてくれると述べていた。<span class="page">75頁</span></p>
+      <p>揺るぎない信念で願望を支えれば、不可能はない。<span class="page">82頁</span></p>
+      <p>私は、信念に支えられた願望の力を信じている。<span class="page">85頁</span></p>
+      <a class="back-top" href="#top">▲ ページの先頭へ</a>
+    </section>
+
+    <section id="faith">
+      <h2>2．信念</h2>
+      <p>信念とは、自己暗示の原理に基づき、潜在意識へのポジティブかつ反復的な指示によって促され、創られる心の状態である。<span class="page">90頁</span></p>
+      <p>信念を育むには、潜在意識に繰り返し肯定的な言葉を語りかける必要がある。<span class="page">91頁</span></p>
+      <p><strong>情緒化され（感情を与えられ）、信念と混ざり合った思考は、すぐに現実化し始める。</strong><span class="page">91頁</span></p>
+      <p>潜在意識を動かすのに、信念は欠かせない。<span class="page">92頁</span></p>
+      <div class="note">注釈：勇猛邁進する力は潜在意識が持っており、それを促すものが信念である、という考え。</div>
+      <p>感情と結びついた思考は、似たような思考を惹きつける「磁石」になる。<span class="page">95頁</span></p>
+      <div class="note">注釈：何かを必死に考えていると、必要な情報を入手できる。</div>
+      <p><strong>自信を育むための公式</strong><span class="page">97頁</span></p>
+      <p>恐怖や疑念、不信感で心を満たしていると、自己暗示によってそれが潜在意識に伝わり、現実のものになってしまう。<span class="page">99頁</span></p>
+      <p>ガンジーは信念の原理を理解し、それを二億人の国民の心に植えつけることによって、この力を生み出した。信念以外に、このようなことを実現できる力はあるだろうか。<span class="page">102頁</span></p>
+      <p>何よりも重要なのは、リーダーがガンジーの原理を理解し、採用することだ。ガンジーの「信念の力」を活かすことで、リーダーは初めて、協力の精神にあふれた、最大の力を発揮する組織をつくり、持続できるのである。<span class="page">104頁</span></p>
+      <p>事業や産業の運営では、信念と協力が必要である。実業家は、自分が利益を得ることよりも、まず相手に与えることに目を向けるべきだ。<span class="page">104頁</span></p>
+      <a class="back-top" href="#top">▲ ページの先頭へ</a>
+    </section>
+
+    <section id="autosuggestion">
+      <h2>3．自己暗示</h2>
+      <p>自己暗示とは、五感を通じて自らの心に働きかける暗示や刺激のことである。これは一種の自己催眠法ともいえる。<span class="page">120頁</span></p>
+      <p>自己暗示は、意識的な思考と、私たちを行動に突き動かしている潜在意識との間を橋渡しする役割を担っている。<span class="page">120頁</span></p>
+      <p>どんな思考も、自己暗示の力を借りずには潜在意識に入り込めない。<span class="page">120頁</span></p>
+      <p>自己暗示の原理を使えるかどうかは、燃えるような執念になるまで、その願望に集中できるかどうかにかかっている。<span class="page">122頁</span></p>
+      <p>計画が目の前に現れたら、すぐに行動に移すこと。<span class="page">123頁</span></p>
+      <p>計画は第六感を通して「ひらめき」のような形で現れることが多い。<span class="page">123頁</span></p>
+      <p>この価値あるメッセージを受け取ったら、すぐに行動しよう。<span class="page">123頁</span></p>
+      <p><strong>潜在意識を働かせるための三ステップ</strong><span class="page">125頁</span></p>
+      <ol class="steps">
+        <li>何かに成功している姿を宣言文にし、声を出して読む。</li>
+        <li>この宣言文を朝と夜に繰り返して音読し、成功した姿を想像する。</li>
+        <li>この宣言文を家の中に貼り、常にそれが頭から離れないようにする。</li>
+      </ol>
+      <p>これを実行するときは、自己暗示の力を用いて潜在意識に働きかけようとしていることを忘れないでほしい。<span class="page">126頁</span></p>
+      <p>人間は新しいアイデアに対して懐疑心を持つものだ。しかし、ここで説明した指示に従えば、懐疑心はすぐに信念に変わり、さらには絶対的な信念となって結晶化されるだろう。そのとき、あなたは「私は自分の運命の主人であり、自分の魂の船長である」といえる境地に到達するはずだ。<span class="page">126頁</span></p>
+      <p class="warning">注意：懐疑心が残ったままでは計画は台無しになる。懐疑心を払拭する考えを、信念にすること。<span class="page">126頁</span></p>
+      <a class="back-top" href="#top">▲ ページの先頭へ</a>
+    </section>
+
+    <section id="knowledge"><h2>4．専門知識</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="imagination"><h2>5．想像力</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="planning"><h2>6．計画</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="decision"><h2>7．決断</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="persistence"><h2>8．忍耐力</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="mastermind"><h2>9．マスターマインド</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="transmutation"><h2>10．性エネルギーの転換（昇華）</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="subconscious"><h2>11．潜在意識</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="brain"><h2>12．脳</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+    <section id="sixth-sense"><h2>13．第六感</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
+
+    <footer>基本は中村天風の言葉</footer>
+  </main>
+</body>
+</html>

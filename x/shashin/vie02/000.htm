@@ -1,0 +1,280 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>写真ビューアー</title>
+
+<style>
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  body {
+    position: relative;
+    font-family: sans-serif;
+  }
+
+  #photo {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background-color: #000;
+  }
+
+  /* 写真の左半分・右半分 */
+  .click-area {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+    width: 50%;
+    cursor: pointer;
+  }
+
+  #leftArea {
+    left: 0;
+  }
+
+  #rightArea {
+    right: 0;
+  }
+
+  /* ボタン部分 */
+  .controls {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    z-index: 10;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+
+  .controls.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  button {
+    min-width: 100px;
+    margin: 0 6px;
+    padding: 10px 18px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: rgba(90, 90, 90, 0.9);
+  }
+
+  #number {
+    display: inline-block;
+    min-width: 110px;
+    padding: 8px;
+    color: #fff;
+    font-size: 17px;
+    text-shadow: 1px 1px 3px #000;
+  }
+</style>
+</head>
+
+<body>
+
+<img id="photo" src="001.jpg" alt="写真">
+
+<!-- 写真の左半分をクリックすると前へ -->
+<div id="leftArea"
+     class="click-area"
+     title="前の写真">
+</div>
+
+<!-- 写真の右半分をクリックすると次へ -->
+<div id="rightArea"
+     class="click-area"
+     title="次の写真">
+</div>
+
+<div id="controls" class="controls">
+
+  <button type="button"
+          onclick="previousPhoto(); event.stopPropagation();">
+    前
+  </button>
+
+  <button type="button"
+          onclick="nextPhoto(); event.stopPropagation();">
+    次
+  </button>
+
+  <span id="number"></span>
+
+  <button type="button"
+          onclick="goToCover(); event.stopPropagation();">
+    表紙へ戻る
+  </button>
+
+  <button type="button"
+          onclick="toggleFullscreen(); event.stopPropagation();">
+    全画面
+  </button>
+
+</div>
+
+<script>
+  /* ===== 写真の設定 ===== */
+
+  const firstNumber = 1;
+  const lastNumber = 54;
+
+  /* 写真名が001.jpg、002.jpgの場合 */
+  const prefix = "";
+  const extension = ".jpg";
+
+  /*
+    写真名がE1985_001.jpgの場合は、
+    次のように変更します。
+
+    const prefix = "E1985_";
+  */
+
+  /* 表紙の場所 */
+  const coverPage = "../../index.htm";
+
+  /* ====================== */
+
+  let currentNumber = firstNumber;
+  let hideTimer;
+
+  function makeFileName(number) {
+    return prefix +
+      String(number).padStart(3, "0") +
+      extension;
+  }
+
+  function showPhoto() {
+    document.getElementById("photo").src =
+      makeFileName(currentNumber);
+
+    document.getElementById("number").textContent =
+      String(currentNumber).padStart(3, "0") +
+      " / " +
+      String(lastNumber).padStart(3, "0");
+
+    showControls();
+  }
+
+  /* 前の写真。最初の写真の次は最後へ戻る */
+  function previousPhoto() {
+    currentNumber--;
+
+    if (currentNumber < firstNumber) {
+      currentNumber = lastNumber;
+    }
+
+    showPhoto();
+  }
+
+  /* 次の写真。最後の写真の次は最初へ戻る */
+  function nextPhoto() {
+    currentNumber++;
+
+    if (currentNumber > lastNumber) {
+      currentNumber = firstNumber;
+    }
+
+    showPhoto();
+  }
+
+  function goToCover() {
+    location.href = coverPage;
+  }
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  /* ボタンを表示し、5秒後に消す */
+  function showControls() {
+    const controls =
+      document.getElementById("controls");
+
+    controls.classList.remove("hidden");
+
+    clearTimeout(hideTimer);
+
+    hideTimer = setTimeout(function() {
+      controls.classList.add("hidden");
+    }, 5000);
+  }
+
+  /* 写真の左半分・右半分をクリック */
+  document.getElementById("leftArea")
+    .addEventListener("click", previousPhoto);
+
+  document.getElementById("rightArea")
+    .addEventListener("click", nextPhoto);
+
+  /* マウスを動かすとボタンを再表示 */
+  document.addEventListener(
+    "mousemove",
+    showControls
+  );
+
+  /* キーボード操作 */
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowLeft") {
+      previousPhoto();
+    }
+
+    if (event.key === "ArrowRight") {
+      nextPhoto();
+    }
+
+    if (event.key === "Home") {
+      currentNumber = firstNumber;
+      showPhoto();
+    }
+
+    if (event.key === "End") {
+      currentNumber = lastNumber;
+      showPhoto();
+    }
+
+    if (event.key === "Escape") {
+      showControls();
+    }
+  });
+
+  /* マウスホイール操作 */
+  document.addEventListener("wheel", function(event) {
+    if (event.deltaY > 0) {
+      nextPhoto();
+    } else if (event.deltaY < 0) {
+      previousPhoto();
+    }
+  });
+
+  showPhoto();
+</script>
+
+</body>
+</html>
+```

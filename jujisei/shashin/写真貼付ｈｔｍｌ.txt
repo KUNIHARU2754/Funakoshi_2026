@@ -1,0 +1,27 @@
+<img src="../shashin/jchi03.jpg" align="center">
+
+<img src="../shashin/jp010-4.jpg" align="right">
+
+
+
+   <tr>
+    <td colspan="2"><tt><font size=4 color="#006633">
+
+<br>
+    </tt></font></td>
+   </tr>
+   <tr>
+    <td >
+    </td>
+    <td ><tt><font size=4 color="#006633"><p style="line-height:180%">
+
+<br>
+    </tt></font></td>
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+<!doctype html public "_//w3c//dtd html 4.0 frameset//en" "http://www.w3c.org/tr/rec-html40/frameset.dtd">
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>南十字星の下で</title>
+
+  <script>
+    function centerFrameContent(frame) {
+      try {
+        var doc = frame.contentDocument || frame.contentWindow.document;
+        if (!doc || !doc.body) return;
+        doc.body.style.textAlign = "center";
+        var items = doc.querySelectorAll("img, button, input[type=button], input[type=submit], a img");
+        for (var i = 0; i < items.length; i++) {
+          items[i].style.marginLeft = "auto";
+          items[i].style.marginRight = "auto";
+        }
+        var images = doc.querySelectorAll("img");
+        for (var j = 0; j < images.length; j++) {
+          images[j].style.display = "block";
+        }
+      } catch (e) {
+        /* 外部カウンターのフレームは変更しない */
+      }
+    }
+  </script>
+</head>
+
+<frameset rows='1,50,*' frameborder='0' framespacing='0' border='0'     >
+ <frame src='http://my.internetacademy.jp/~a01050035/cgi-bin/counter/inquire.pl?page=JUJI_50'  name='in'    frameborder='0'  scrolling='no'>
+ <frame src="../moku/juji50m.htm"  name="moku"   scrolling="no" onload="centerFrameContent(this)">
+ <frame src="../bunn/juji50b.htm"  name="honbun" onload="centerFrameContent(this)"  >
+</frameset>
+<noframe>
+</noframe>
+</html>
+
+
+
+

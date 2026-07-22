@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操作ボタン</title>
+<style>
+html, body { margin:0; padding:0; height:100%; }
+body { background:#ffffff url("media/note01.gif") repeat; font-family:"游ゴシック", "Yu Gothic", "MS Gothic", sans-serif; }
+.btn-wrap { text-align:center; padding-top:8px; }
+button, a.btn { display:inline-block; font-size:22px; font-family:"游ゴシック", "Yu Gothic", "MS Gothic", sans-serif; padding:6px 28px; margin:0 18px; border:2px solid #333; background:#f5f5f5; color:#000; text-decoration:none; border-radius:6px; cursor:pointer; }
+</style>
+<script>
+function backToATable(){
+  if (parent && parent.frames && parent.frames['honbun']) {
+    parent.frames['honbun'].location.href = 'honbun.htm#top';
+  }
+}
+</script>
+</head>
+<body>
+<div class="btn-wrap">
+
+    <a class="btn" href="../shosai.htm" target="_top">
+        表紙へ
+    </a>
+
+
+    <button type="button" onclick="backToATable()">
+        戻る
+    </button>
+
+    <span class="page-title"
+          style="font-family:'ＭＳ ゴシック';
+                 font-size:24px;
+                 color:#ff0000;
+                 font-weight:bold;">
+        船越邦治略譜・人生観
+    </span>
+
+</div>
+
+
+</body>
+</html>
+
+<!--
+<div class="btn-wrap"><a class="btn" href="../shosai.htm" target="_top">表紙へ</a>
+<button type="button" onclick="backToATable()">戻る</button></div>
+
+<p style="text-align:center;">
+    <span style="font-family:'ＭＳ ゴシック'; font-size:24px; color:#ff0000;">
+        船越邦治略譜・人生観
+    </span>
+</p>
+-->

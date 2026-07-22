@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>パプアニューギニア南十次星の下で。</title>
+  <style>
+    html, body { margin: 0; padding: 0; }
+    body { background: #ccffcc; }
+    .button-bar { display: flex; justify-content: center; width: 100%; }
+    table { font-size: 14pt; border-collapse: collapse; }
+    td { vertical-align: middle; }
+    img { display: block; }
+    .feedback a { color: #ff0000; }
+    </style>
+  <script>
+function newImage(arg) {
+	if (document.images) {
+		rslt = new Image();
+		rslt.src = arg;
+		return rslt;    }  }
+
+function changeImages() {
+	if (document.images && (preloadFlag == true)) {
+		for (var i=0; i<changeImages.arguments.length; i+=2) {
+			document[changeImages.arguments[i]].src = changeImages.arguments[i+1];
+		}  }  }
+
+var preloadFlag = false;
+function preloadImages() {
+	if (document.images) {
+		Bhyousi_01_over = newImage("Bhyousi_01-over.jpg");
+		Bmokuji_01_over = newImage("Bmokuji_01-over.jpg");
+		Bback_01_over   = newImage("Bback_01-over.jpg");
+        	Bnext_01_over   = newImage("Bnext_01-over.jpg");
+		preloadFlag = true;
+	} }
+  </script>
+</head>
+<body onload="preloadImages();">
+  <div class="button-bar">
+<table >
+<tr>
+  <td width="65" ><img src="../shashin/hyos.jpg" width="65" height="45"></td>
+  <td width="65" ><img src="../shashin/nfla.jpg" width="65" height="45"></td>
+  <td width="80">
+    <A HREF="../frame/juji000ff.htm"  target="_top"
+      ONMOUSEOVER="changeImages('Bhyousi_01', 'bhyousi_01-over.jpg'); return true;"
+      ONMOUSEOUT ="changeImages('Bhyousi_01', 'bhyousi_01.jpg'     ); return true;">
+       <IMG NAME="Bhyousi_01" SRC="bhyousi_01.jpg" WIDTH=80 HEIGHT=45></A>
+  </td>
+  <td width="80">
+    <A HREF="../frame/juji002f.htm" target="_top"
+     ONMOUSEOVER="changeImages('Bmokuji_01', 'bmokuji_01-over.jpg'); return true;"
+     ONMOUSEOUT ="changeImages('Bmokuji_01', 'bmokuji_01.jpg'     ); return true;">
+      <IMG NAME ="Bmokuji_01" SRC="bmokuji_01.jpg" WIDTH=80 HEIGHT=45></A>
+  </td>
+  <td width="80">
+   <A HREF="../frame/juji09f.htm"  target="_top"
+    ONMOUSEOVER="changeImages('Bback_01', 'bback_01-over.jpg'); return true;"
+    ONMOUSEOUT ="changeImages('Bback_01', 'bback_01.jpg'     ); return true;">
+     <IMG NAME="Bback_01" SRC="bback_01.jpg" WIDTH=80 HEIGHT=45></A>
+  </td>
+  <td width="80">
+   <A HREF="../frame/juji11f.htm"  target="_top" 
+   ONMOUSEOVER="changeImages('Bnext_01', 'bnext_01-over.jpg'); return true;"
+   ONMOUSEOUT ="changeImages('Bnext_01', 'bnext_01.jpg'); return true;">
+    <IMG NAME ="Bnext_01" SRC="bnext_01.jpg" WIDTH=80 HEIGHT=45></A> 
+  </td>
+  <td>　<a href="mailto:kuniharu-funakoshi@hotmail.com">感想記入</a>
+  </td>
+</tr>
+</table>
+  </div>
+</body>
+</html>
