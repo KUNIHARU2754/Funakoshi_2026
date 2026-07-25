@@ -1,349 +1,491 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ナポレオン・ヒル研究</title>
-  <style>
-    :root {
-      --navy: #24364b;
-      --gold: #b28a3b;
-      --paper: #fffdf7;
-      --ink: #252525;
-      --soft: #f4efe2;
-      --line: #d8cfbd;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: #eee9df;
-      font-family: "Yu Mincho", "Hiragino Mincho ProN", "BIZ UDPMincho", serif;
-      line-height: 1.9;
-    }
-
-    #top { scroll-margin-top: 92px; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 68px;
-      padding: 10px max(16px, calc((100vw - 980px) / 2));
-      color: #fff;
-      background: rgba(36, 54, 75, 0.97);
-      border-bottom: 3px solid var(--gold);
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
-    }
-
-    .nav-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45em;
-      min-height: 42px;
-      padding: 7px 13px;
-      color: #fff;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.45);
-      border-radius: 7px;
-      text-decoration: none;
-      white-space: nowrap;
-      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
-      font-size: 0.95rem;
-      transition: background .2s, transform .2s;
-    }
-
-    .nav-button:hover,
-    .nav-button:focus-visible {
-      background: rgba(255,255,255,0.22);
-      transform: translateY(-1px);
-      outline: none;
-    }
-
-    .icon { font-size: 1.2rem; line-height: 1; }
-
-    .site-title {
-      margin-left: 6px;
-      font-size: clamp(1rem, 2.3vw, 1.35rem);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-    }
-
-    main {
-      width: min(980px, calc(100% - 28px));
-      margin: 28px auto 70px;
-      padding: clamp(24px, 5vw, 58px);
-      background: var(--paper);
-      box-shadow: 0 8px 30px rgba(61, 50, 31, 0.14);
-      border: 1px solid #ddd4c2;
-    }
-
-    .hero {
-      padding: 22px 12px 32px;
-      text-align: center;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero h1 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(1.75rem, 5vw, 2.8rem);
-      letter-spacing: 0.08em;
-      line-height: 1.45;
-    }
-
-    .hero p {
-      margin: 12px 0 0;
-      color: #6b5a3e;
-      font-size: 1.08rem;
-    }
-
-    .toc {
-      margin: 34px 0 54px;
-      padding: 25px clamp(18px, 4vw, 34px);
-      background: var(--soft);
-      border-left: 5px solid var(--gold);
-      border-radius: 4px;
-    }
-
-    .toc h2 {
-      margin: 0 0 16px;
-      color: var(--navy);
-      font-size: 1.35rem;
-    }
-
-    .toc-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 7px 28px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .toc a {
-      display: block;
-      padding: 4px 7px;
-      color: #263e58;
-      text-decoration: none;
-      border-bottom: 1px dotted #aa9e89;
-    }
-
-    .toc a:hover,
-    .toc a:focus-visible {
-      color: #7b5410;
-      background: rgba(255,255,255,.65);
-      outline: none;
-    }
-
-    section {
-      margin: 0 0 68px;
-      scroll-margin-top: 92px;
-    }
-
-    section h2 {
-      margin: 0 0 22px;
-      padding: 8px 14px;
-      color: #fff;
-      background: var(--navy);
-      border-left: 8px solid var(--gold);
-      font-size: clamp(1.25rem, 3vw, 1.65rem);
-      letter-spacing: 0.05em;
-    }
-
-    p { margin: 0 0 1.05em; }
-
-    .page {
-      display: inline-block;
-      margin-left: .5em;
-      color: #75684f;
-      font-family: "Yu Gothic", sans-serif;
-      font-size: .82em;
-      white-space: nowrap;
-    }
-
-    .steps {
-      margin: 18px 0 24px;
-      padding: 18px 22px 12px 48px;
-      background: #faf6ec;
-      border: 1px solid var(--line);
-    }
-
-    .steps li { margin-bottom: .8em; }
-
-    .note {
-      margin: 20px 0;
-      padding: 14px 18px;
-      background: #fff7e0;
-      border-left: 4px solid #c49128;
-    }
-
-    .warning {
-      color: #a12520;
-      font-weight: 700;
-    }
-
-    .unfinished {
-      min-height: 140px;
-      padding: 26px;
-      color: #786f60;
-      background: #faf8f2;
-      border: 1px dashed #bdb39f;
-      text-align: center;
-    }
-
-    .back-top {
-      display: block;
-      width: fit-content;
-      margin: 28px 0 0 auto;
-      color: #465d74;
-      text-decoration: none;
-      font-family: "Yu Gothic", sans-serif;
-      font-size: .92rem;
-    }
-
-    footer {
-      padding-top: 22px;
-      color: #756d60;
-      text-align: center;
-      border-top: 1px solid var(--line);
-      font-size: .9rem;
-    }
-
-    @media (max-width: 680px) {
-      .topbar { flex-wrap: wrap; }
-      .site-title { width: 100%; margin: 1px 0 0; }
-      .toc-list { grid-template-columns: 1fr; }
-      main { width: min(100% - 16px, 980px); padding: 24px 18px 38px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ナポレオン・ヒル「成功哲学13の原則」</title>
+<style>
+html { scroll-behavior: auto; }
+body { margin:0; background:url("note01.gif"); color:#000; font-family:"ＭＳ 明朝","Yu Mincho",serif; line-height:1.7; }
+a { color:#000; }
+.fixed-nav { position:fixed; top:0; left:0; right:0; z-index:10; padding:8px 14px; background:rgba(255,255,255,.92); border-bottom:1px solid #999; text-align:center; }
+.fixed-nav a { display:inline-block; margin:0 18px; font-weight:bold; }
+main { width:750px; margin:0 auto; padding-top:58px; }
+h1,h2 { text-align:center; }
+h1 { font-size:24px; margin:20px 0 4px; }
+.subtitle { text-align:center; font-size:20px; margin:0 0 25px; }
+.toc-wrap { text-align:center; }
+.toc { display:inline-block; text-align:left; margin:0 auto; }
+.toc div { margin:3px 0; }
+.toc a { color:#000; text-decoration:none; }
+.section-title { text-align:center; font-size:20px; font-weight:normal; margin:0 0 28px; }
+section[id] { scroll-margin-top:52px; }
+.entry { display:grid; grid-template-columns:minmax(0,1fr) 110px; column-gap:18px; margin:0 0 15px; align-items:start; }
+.page { text-align:right; white-space:nowrap; }
+.back { text-align:right; margin-top:30px; }
+.spacer { display:block; width:1px; height:1000px; }
+.red { color:red; }
+.bold { font-weight:bold; }
+.gothic { font-family:"游ゴシック","Yu Gothic","ＭＳ ゴシック",sans-serif; }
+@media (max-width:790px) { main { width:auto; margin:0 20px; } }
+</style>
 </head>
-<body>
-  <div id="top"></div>
+<body id="top">
+<nav class="fixed-nav"><a href="../shosai">表紙に戻る</a><a href="#mokuji">目次に戻る</a></nav>
+<main>
 
-  <header class="topbar" aria-label="ページ上部の案内">
-    <a class="nav-button" href="../shosai.htm" title="一つ上のフォルダーにある shosai.htm へ戻ります">
-      <span class="icon" aria-hidden="true">⌂</span><span>表紙に戻る</span>
-    </a>
-    <a class="nav-button" href="#top" title="このページの先頭へ戻ります">
-      <span class="icon" aria-hidden="true">↥</span><span>元に戻る</span>
-    </a>
-    <div class="site-title">ナポレオン・ヒル研究</div>
-  </header>
+<section id="mokuji" class="toc-wrap">
 
-  <main>
-    <div class="hero">
-      <h1>ナポレオン・ヒル<span style="font-family:'ＭＳ ゴシック'; font-size:40px; color:#ff0000;">作成中</span><br>
-     「巨富を築く思考法」</h1>
-      <p><h1>成功哲学13の原則</h1></p>
-    </div>
-
-    <nav class="toc" aria-label="目次">
-      <h2>目次</h2>
-      <ul class="toc-list">
-        <li><a href="#intro">初めに</a></li>
-        <li><a href="#desire">1．願望</a></li>
-        <li><a href="#faith">2．信念</a></li>
-        <li><a href="#autosuggestion">3．自己暗示</a></li>
-        <li><a href="#knowledge">4．専門知識</a></li>
-        <li><a href="#imagination">5．想像力</a></li>
-        <li><a href="#planning">6．計画</a></li>
-        <li><a href="#decision">7．決断</a></li>
-        <li><a href="#persistence">8．忍耐力</a></li>
-        <li><a href="#mastermind">9．マスターマインド</a></li>
-        <li><a href="#transmutation">10．性エネルギーの転換（昇華）</a></li>
-        <li><a href="#subconscious">11．潜在意識</a></li>
-        <li><a href="#brain">12．脳</a></li>
-        <li><a href="#sixth-sense">13．第六感</a></li>
-      </ul>
-    </nav>
-
-    <section id="intro">
-      <h2>初めに</h2>
-      <p>明確な目的や、粘り強さ、富や豊かさに変えようとする燃えるような願望と一体となったとき、思考はとてつもなく強力なものになる。<span class="page">32頁</span></p>
-      <p>明確な目的を持ち、わき目もふらずにその実現だけを考えていれば、人はとてつもなく大きなことを成し遂げられる。<span class="page">34頁</span></p>
-      <a class="back-top" href="#top">▲ ページの先頭へ</a>
-    </section>
-
-    <section id="desire">
-      <h2>1．願望</h2>
-      <p><strong>富への願望を現実化するための「願望実現のための6ステップ」</strong><span class="page">62頁</span></p>
-      <ol class="steps">
-        <li>望むものを明確にする。</li>
-        <li>望むものを得る引き換えに、何を提供するか決める。（何を犠牲にするか）</li>
-        <li>望むものをいつまでに得るか、明確な期限を決める。</li>
-        <li>願望実現のための明確な計画を立て、すぐに実行する。（たとえ準備が整っていなくても）</li>
-        <li>上記の内容を記した簡潔な文章を作成する。</li>
-        <li>毎日二回、就寝前と起床時に、その文章を声に出して読む。（中村天風）<span class="page">62頁</span></li>
-      </ol>
-      <p>大きな富を手にした自分の姿を想像できなければ、銀行口座の残高は増えない。<span class="page">64頁</span></p>
-      <p>欠かせない資質がある。それは明確な目的、つまり自分が何を求めているかを知っていることであり、それを手に入れたいという強い願望を持っていることだ。<span class="page">65頁</span></p>
-      <p>何者かになりたい、何かを成し遂げたい、という燃えるような願望こそが、夢想家の出発点だ。<span class="page">68頁</span></p>
-      <p>信念に裏打ちされた願望に、不可能という言葉は無縁だった。<span class="page">75頁</span></p>
-      <p>私が知る成功哲学はどれも、逆境は、苦しみと同じだけのメリットをもたらしてくれると述べていた。<span class="page">75頁</span></p>
-      <p>揺るぎない信念で願望を支えれば、不可能はない。<span class="page">82頁</span></p>
-      <p>私は、信念に支えられた願望の力を信じている。<span class="page">85頁</span></p>
-      <a class="back-top" href="#top">▲ ページの先頭へ</a>
-    </section>
-
-    <section id="faith">
-      <h2>2．信念</h2>
-      <p>信念とは、自己暗示の原理に基づき、潜在意識へのポジティブかつ反復的な指示によって促され、創られる心の状態である。<span class="page">90頁</span></p>
-      <p>信念を育むには、潜在意識に繰り返し肯定的な言葉を語りかける必要がある。<span class="page">91頁</span></p>
-      <p><strong>情緒化され（感情を与えられ）、信念と混ざり合った思考は、すぐに現実化し始める。</strong><span class="page">91頁</span></p>
-      <p>潜在意識を動かすのに、信念は欠かせない。<span class="page">92頁</span></p>
-      <div class="note">注釈：勇猛邁進する力は潜在意識が持っており、それを促すものが信念である、という考え。</div>
-      <p>感情と結びついた思考は、似たような思考を惹きつける「磁石」になる。<span class="page">95頁</span></p>
-      <div class="note">注釈：何かを必死に考えていると、必要な情報を入手できる。</div>
-      <p><strong>自信を育むための公式</strong><span class="page">97頁</span></p>
-      <p>恐怖や疑念、不信感で心を満たしていると、自己暗示によってそれが潜在意識に伝わり、現実のものになってしまう。<span class="page">99頁</span></p>
-      <p>ガンジーは信念の原理を理解し、それを二億人の国民の心に植えつけることによって、この力を生み出した。信念以外に、このようなことを実現できる力はあるだろうか。<span class="page">102頁</span></p>
-      <p>何よりも重要なのは、リーダーがガンジーの原理を理解し、採用することだ。ガンジーの「信念の力」を活かすことで、リーダーは初めて、協力の精神にあふれた、最大の力を発揮する組織をつくり、持続できるのである。<span class="page">104頁</span></p>
-      <p>事業や産業の運営では、信念と協力が必要である。実業家は、自分が利益を得ることよりも、まず相手に与えることに目を向けるべきだ。<span class="page">104頁</span></p>
-      <a class="back-top" href="#top">▲ ページの先頭へ</a>
-    </section>
-
-    <section id="autosuggestion">
-      <h2>3．自己暗示</h2>
-      <p>自己暗示とは、五感を通じて自らの心に働きかける暗示や刺激のことである。これは一種の自己催眠法ともいえる。<span class="page">120頁</span></p>
-      <p>自己暗示は、意識的な思考と、私たちを行動に突き動かしている潜在意識との間を橋渡しする役割を担っている。<span class="page">120頁</span></p>
-      <p>どんな思考も、自己暗示の力を借りずには潜在意識に入り込めない。<span class="page">120頁</span></p>
-      <p>自己暗示の原理を使えるかどうかは、燃えるような執念になるまで、その願望に集中できるかどうかにかかっている。<span class="page">122頁</span></p>
-      <p>計画が目の前に現れたら、すぐに行動に移すこと。<span class="page">123頁</span></p>
-      <p>計画は第六感を通して「ひらめき」のような形で現れることが多い。<span class="page">123頁</span></p>
-      <p>この価値あるメッセージを受け取ったら、すぐに行動しよう。<span class="page">123頁</span></p>
-      <p><strong>潜在意識を働かせるための三ステップ</strong><span class="page">125頁</span></p>
-      <ol class="steps">
-        <li>何かに成功している姿を宣言文にし、声を出して読む。</li>
-        <li>この宣言文を朝と夜に繰り返して音読し、成功した姿を想像する。</li>
-        <li>この宣言文を家の中に貼り、常にそれが頭から離れないようにする。</li>
-      </ol>
-      <p>これを実行するときは、自己暗示の力を用いて潜在意識に働きかけようとしていることを忘れないでほしい。<span class="page">126頁</span></p>
-      <p>人間は新しいアイデアに対して懐疑心を持つものだ。しかし、ここで説明した指示に従えば、懐疑心はすぐに信念に変わり、さらには絶対的な信念となって結晶化されるだろう。そのとき、あなたは「私は自分の運命の主人であり、自分の魂の船長である」といえる境地に到達するはずだ。<span class="page">126頁</span></p>
-      <p class="warning">注意：懐疑心が残ったままでは計画は台無しになる。懐疑心を払拭する考えを、信念にすること。<span class="page">126頁</span></p>
-      <a class="back-top" href="#top">▲ ページの先頭へ</a>
-    </section>
-
-    <section id="knowledge"><h2>4．専門知識</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="imagination"><h2>5．想像力</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="planning"><h2>6．計画</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="decision"><h2>7．決断</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="persistence"><h2>8．忍耐力</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="mastermind"><h2>9．マスターマインド</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="transmutation"><h2>10．性エネルギーの転換（昇華）</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="subconscious"><h2>11．潜在意識</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="brain"><h2>12．脳</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-    <section id="sixth-sense"><h2>13．第六感</h2><div class="unfinished">本文はこれから追加できます。</div><a class="back-top" href="#top">▲ ページの先頭へ</a></section>
-
-    <footer>基本は中村天風の言葉</footer>
-  </main>
+<header>
+<h1>ナポレオン・ヒル「巨富を築く思考法」</h1>
+<div class="subtitle">「成功哲学13の原則」</div>
+</header>
+<div class="toc">
+<div><a href="#hajime">初めに</a></div>
+<div><a href="#section1">　１．願望</a></div>
+<div><a href="#section2">　２．信念</a></div>
+<div><a href="#section3">　３．自己暗示</a></div>
+<div><a href="#section4">　４．専門知識</a></div>
+<div><a href="#section5">　５．想像力</a></div>
+<div><a href="#section6">　６．計画</a></div>
+<div><a href="#section7">　７．決断</a></div>
+<div><a href="#section8">　８．忍耐力</a></div>
+<div><a href="#section9">　９．マスターマインド</a></div>
+<div><a href="#section10">１０．性エネルギーの転換（昇華）</a></div>
+<div><a href="#section11">１１．潜在意識</a></div>
+<div><a href="#section12">１２．脳</a></div>
+<div><a href="#section13">１３．第六感</a></div>
+<div><a href="#tenpu">基本は中村天風の言葉</a></div>
+</div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="hajime">
+<h2 class="section-title">初めに</h2>
+<div class="entry">
+<div>明確な目的や、粘り強さ、富や豊かさに変えようとする<span class="bold">燃えるような願望</span>と一体となったとき、思考はとてつもなく強力なものになる。</div><div class="page">32頁2行</div>
+</div>
+<div class="entry">
+<div>明確な目的を持ち、わき目もふらずにその実現だけを考えていれば、人はとてつもなく大きなことを成し遂げられる。</div><div class="page">34頁17行</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section1">
+<h2 class="section-title">１．願望（本書では２章になっている）</h2>
+<div class="entry">
+<div>富への願望を現実化するための<span class="bold red">「願望実現のための６ステップ」</span></div><div class="page">62頁１行</div>
+</div>
+<div class="entry">
+<div>①望むものを明確にする。</div><div class="page">62頁2行</div>
+</div>
+<div class="entry">
+<div>②望み物を得る引き換えに何を提供するか決める事。（何を犠牲にするか）</div><div class="page">62頁5行</div>
+</div>
+<div class="entry">
+<div>③望む物をいつまでに得るか明確な期限を決める事</div><div class="page">62頁7行</div>
+</div>
+<div class="entry">
+<div>④願望実現のための明確な計画を立てすぐに実行する事。（たとえ準備が整っていなくても）</div><div class="page">62頁8行</div>
+</div>
+<div class="entry">
+<div>⑤記述の①～⑥を記した簡潔な文章を作成する事。</div><div class="page">62頁9行</div>
+</div>
+<div class="entry">
+<div>⑥毎日二回、就寝前と起床時に前述⑤を声に出して読むこと（中村天風）</div><div class="page">62頁11行</div>
+</div>
+<div class="entry">
+<div><span class="bold">大きな富を手にした自分の姿を想像できなければ銀行口座の残高は増えない</span></div><div class="page">64頁10行</div>
+</div>
+<div class="entry">
+<div>欠かせない資質がある。それは明確な目的、つまり自分が何を求めているかを知っていることであり、それを手に入れたいという強い願望を持っていることだ。</div><div class="page">65頁3行</div>
+</div>
+<div class="entry">
+<div><span class="bold">何者にかなりたい、何かを成し遂げたい、という燃えるような願望こそが、夢想家の出発点だ。</span></div><div class="page">68頁8行</div>
+</div>
+<div class="entry">
+<div>信念に裏打ちされた願望に不可能という言葉は無縁だった。</div><div class="page">75頁8行</div>
+</div>
+<div class="entry">
+<div>私が知る成功哲学はどれも、<span class="bold">逆境は、苦しみと同じだけのメリットをもたらしてくれる</span>と述べていた、</div><div class="page">75頁15行</div>
+</div>
+<div class="entry">
+<div>揺ぎない信念で願望を支えれば、不可能はない。</div><div class="page">82頁9行</div>
+</div>
+<div class="entry">
+<div>私は、信念に支えられた願望の力を信じている。</div><div class="page">85頁14行</div>
+</div>
+<div class="entry">
+<div>願望は思考の衝動であり、エネルギーの一形態である。</div><div class="page">155頁5行</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section2">
+<h2 class="section-title">２．信念（本書では３章になっている）</h2>
+<div class="entry">
+<div>信念とは、自己暗示の原理に基づき、潜在意識のポジティブかつ反復的な指示によって促され、創られる心の状態である。</div><div class="page">90頁12行</div>
+</div>
+<div class="entry">
+<div>信念を育むには、潜在意識に繰り返し肯定的な言葉を語りかける必要がある。</div><div class="page">91頁9行</div>
+</div>
+<div class="entry">
+<div><span class="bold">情緒化され（感情を与えられ）、信念と混ざり合った思考は、すぐに現実化し始める。</span></div><div class="page">92頁16行</div>
+</div>
+<div class="entry">
+<div>潜在意識を動かすのに、信念は欠かせない。<span class="bold red">注釈：勇猛邁進する力は潜在意識が持っている、これを促すのが信念という考え。</span></div><div class="page">92頁14行</div>
+</div>
+<div class="entry">
+<div>信念は、思考に生命力や力、行動力を与える、永遠の万能薬である</div><div class="page">94頁5行</div>
+</div>
+<div class="entry">
+<div>信念は富を築くための出発地点である</div><div class="page">94頁7行</div>
+</div>
+<div class="entry">
+<div>信念は、「奇跡」や、科学の法則では解き明かせないあらゆる謎の基盤である。</div><div class="page">94頁8行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">信念は、失敗の唯一の解毒剤である。</span></div><div class="page">94頁9行</div>
+</div>
+<div class="entry">
+<div>信念は、祈りと組み合わせることで。宇宙を司る「無限の知性」と交信できる「化学物質」である。</div><div class="page">94頁10行</div>
+</div>
+<div class="entry">
+<div>信念は、人間の有限の心が生み出す日常的な思考を、精神的なエネルギーに変えてくれる。（中村天風は心は無限と言っている）</div><div class="page">94頁12行</div>
+</div>
+<div class="entry">
+<div>信念は、「無限の知性」を私たち人間が利用するための唯一の媒介物である。</div><div class="page">94頁13行</div>
+</div>
+<div class="entry">
+<div><span class="bold">感情と結びついた思考は、似たような思考を惹きつける「磁石」になる。</span><span class="bold red">注釈：何かを必死に考えていると必要な情報を入手できる。</span></div><div class="page">95頁11行</div>
+</div>
+<div class="entry">
+<div><span class="bold">自信を育むための５つの公式</span></div><div class="page">97頁2行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">①</span>私には、人生の目標を達成する能力がある。</div><div class="page">97頁3行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">②</span>私は、心に強い願望を抱けば、それが行動につながり、最終的には現実化すると確信している。</div><div class="page">97頁5行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">③</span><span class="bold">私は、自己暗示の偉大な力によって、心の中の燃えるような願望が、いずれ実現するのを知っている。</span></div><div class="page">97頁7行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">④</span><span class="bold">私は、人生の明確な目標を言葉として書き出した。</span></div><div class="page">97頁9行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">⑤</span><span class="bold">私は、どんな富や地位も、真実や正義の上に築かれなければ長続きしないことを理解している。</span></div><div class="page">97頁11行</div>
+</div>
+<div class="entry">
+<div>恐怖や疑念、不信感で心を満たしていると、自己暗示によってそれが潜在意識に伝わり、現実のものになってしまうのだ。</div><div class="page">99頁15行</div>
+</div>
+<div class="entry">
+<div><span class="bold">ガンジーは信念の原理を理解し、それを二億人の国民の心に植えつけることによって、この力を生み出したのだ。</span></div><div class="page">102頁15行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">信念以外に、このようなことを実現する力があるだろうか。</span></div><div class="page">103頁3行</div>
+</div>
+<div class="entry">
+<div>何よりも重要なのは、リーダーがガンジーの原理を理解し、採用することだ。ガンジーの「信念の力」を活かすことで、リーダーは初めて、協力の精神に溢れた、最大の力を発揮する組織をつくり、持続できるのである。</div><div class="page">104頁1行</div>
+</div>
+<div class="entry">
+<div>事業や産業の運営では信念と協力が必要である。実業家は、自分が利益を得ることよりも、まず相手に与えることに目を向けるべきだ。</div><div class="page">104頁10行</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section3">
+<h2 class="section-title">３．自己暗示（本書では４章になっている）</h2>
+<div class="entry">
+<div>自己暗示とは、五感を通じて自らの心に働きかける暗示や刺激のことである、これは一種の自己催眠法とも言える</div><div class="page">120頁1行</div>
+</div>
+<div class="entry">
+<div>自己暗示は、意識的な思考と、私たちの行動に突き動かしている潜在意識の間の橋渡しをする役割を担っている。</div><div class="page">120頁2行</div>
+</div>
+<div class="entry">
+<div>どんな思考も、自己暗示の力を借りずには潜在意識に入り込めない。</div><div class="page">120頁6行</div>
+</div>
+<div class="entry">
+<div>自己暗示の原理を使えるかどうかは、燃えるような執念になるまで、その願望に集中できるかどうかにかかっている。</div><div class="page">122頁12行</div>
+</div>
+<div class="entry">
+<div>計画が目の前に現れたら、すぐに行動に移すこと。計画は第六感を通して「ひらめき」のような形で現れることが多い。この価値あるメッセージを受け取ったら、すぐに行動しよう</div><div class="page">123頁14行</div>
+</div>
+<div class="entry">
+<div>●潜在意識を働かせるための三ステップ</div><div class="page">125頁1行</div>
+</div>
+<div class="entry">
+<div>①何かを成功している姿を宣言文にし声を出して読むこと</div><div class="page">125頁2行</div>
+</div>
+<div class="entry">
+<div>②この宣言文を朝と夜に繰り返して音読する、成功した姿を想像すること</div><div class="page">125頁15行</div>
+</div>
+<div class="entry">
+<div>③この宣言文を家の中に張って、常にそれが頭から離れないようにすること</div><div class="page">126頁2行</div>
+</div>
+<div class="entry">
+<div>これを実行するときは、自己暗示の力を用いて潜在式に働けかけようとしていることを忘れないでほしい。</div><div class="page">126頁4行</div>
+</div>
+<div class="entry">
+<div>人間は新しいアイディアに対して懐疑心を持つものだ。しかしここで説明した指示に従えば、懐疑心はすぐに信念に変わり、さらには絶対的な信念となって結晶化されるだろう。その時、あなたは「私は自分の運命の主人であり、自分の魂の主人であり、自分の魂の船長である」と言える境地に到達するはずだ。</div><div class="page">126頁11行</div>
+</div>
+<div class="entry">
+<div><span class="red">注意：懐疑心が信念になったら計画は台無しになる。懐疑心を払拭する考えを信念にする事。</span></div><div class="page">船越注釈</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section4">
+<h2 class="section-title">４．専門知識（本書では５章になっている）</h2>
+<div class="entry">
+<div>知識は、富を築くという<span class="bold">明確な目標</span>のもと、<span class="bold">実践多岐な行動</span>を策定し、適切に方向をづけない限り、お金を引き寄せることはない。</div><div class="page">130頁5行</div>
+</div>
+<div class="entry">
+<div>求めているものを手に入れられるだけの知恵や能力を高めた人も、教育のある人なのである。</div><div class="page">131頁1行</div>
+</div>
+<div class="entry">
+<div>「願望はお金に換えられる」と確信する前に、富と引き換えに提供しようとしているサービスや商品、職業についての専門的な知識が必要だ。</div><div class="page">132頁11行</div>
+</div>
+<div class="entry">
+<div>ここまでの説明は、富を築くという野心を持っているが、専門知識を得るための「教育」を受けていない人に希望と励ましを与えるものになるはずだ。</div><div class="page">133頁3行</div>
+</div>
+<div class="entry">
+<div>知識のある人たちから成るマスターマインド・グループをつくり。富を得るのに役立てている人は、誰よりも教育のある人だと言える。</div><div class="page">133頁5行</div>
+</div>
+<div class="entry">
+<div>学歴にコンプレックスを抱えている人はこのことを覚えておいてほしい。</div><div class="page">133頁7行</div>
+</div>
+<div class="entry">
+<div>信頼できる５つの知識源を特定しよう。</div><div class="page">133頁15行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">①</span>自分の経験と教養</div><div class="page">134頁2行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">②</span>他社の協力を通して得られる経験と教養（マスターマインド・アライアンス）</div><div class="page">134頁3行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">③</span>大学（注：必要に応じて専門教授に問い合わせる）</div><div class="page">134頁4行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">④</span>公共図書館（書物はあらゆる分野の体系的な知識を入手できる文明の利器である）</div><div class="page">134頁5行</div>
+</div>
+<div class="entry">
+<div><span class="bold red">⑤</span>特別研修コース（夜間学校や通信講座）</div><div class="page">134頁6行</div>
+</div>
+<div class="entry">
+<div>知識は明確な目的のもとで、現実的な計画に従って体系化し、活用しなければならない。有意義な目的のために応用することで、知識の価値は高まる。</div><div class="page">134頁7行</div>
+</div>
+<div class="entry">
+<div>これから何かを学ぼうとする人は、まずはその知識を得ようとする目的を明確にし、次に、その知識を高めるための信頼できる情報源を探そう</div><div class="page">134頁10行</div>
+</div>
+<div class="entry">
+<div>コロンビア大学の就職担当者ロバート・Ｐ・ムーアは、企業の採用担当者は、学生の成績だけではなく、学業以外の活動や人柄も見ていると述べている。</div><div class="page">135頁９行</div>
+</div>
+<div class="entry">
+<div>採用したい学生について「求めているのは、将来管理職として良い仕事が出来る人材です。そのため私たちは、学歴よりも性格や知性、人柄を重視しています。</div><div class="page">135頁13行</div>
+</div>
+<div class="entry">
+<div>企業が、通信教育で学んでいる従業員を評価する大きな理由もこれだ。プライベートな時間を使って自主的に学ぼうとする者には、将来のリーダーになる資質があることを知っているからだ。</div><div class="page">138頁4行</div>
+</div>
+<div class="entry">
+<div><span class="bold">「知識の買い方」を知ることには、これほど大きな価値がある</span>のである。</div><div class="page">139頁11行</div>
+</div>
+<div class="entry">
+<div>ハルピンは、<span class="bold">人生に妥協せず、望まない仕事を続けることを拒んだ。</span>ーーこれは、本書の成功哲学全体における重要なポイントだ。（注：日本の企業風土に合うだろうか）</div><div class="page">145頁3行</div>
+</div>
+<div class="entry">
+<div><span class="bold">現状の不満を乗り越えて成功を手にした人の下で働くことは、お金では測れない価値がある。</span></div><div class="page">145頁14行</div>
+</div>
+<div class="entry">
+<div>優れたアイディアには計り知れない価値がある。アイディアを支えているのは専門知識だ。</div><div class="page">147頁15行</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section5">
+<h2 class="section-title">５．想像力（本書では６章になっている）</h2>
+<div class="entry">
+<div>人類は、想像し得るものなら何でも創造出来ると言われている。（中村天風：心が創る）</div><div class="page">152頁1行</div>
+</div>
+<div class="entry">
+<div>想像力の２つの形態</div><div class="page"></div>
+</div>
+<div class="entry">
+<div>【統合的想像力】既存の概念やアイディア、計画を新たに組み合わせる能力。</div><div class="page">153頁2行</div>
+</div>
+<div class="entry">
+<div>【創造的想像力】この能力は意識がフル回転している時に作動する。さらに、創造的想像力は使えば使うほど磨きがかかり、潜在的なアイディアに対して敏感になる。</div><div class="page">153頁6行</div>
+</div>
+<div class="entry">
+<div>願望は突き詰めればただの考え、衝動にすぎない。それは漠然とした、抽象的なものであり、現実に変えるまで価値がない。この願望を現実に変えるためには、主に統合的想像力が必要になる。同時に、創造的想像力が求められる状況もあることを忘れないようにしよう。</div><div class="page">154頁4行</div>
+</div>
+<div class="entry">
+<div>富は、アイディアから生まれる。アイディアは想像力の産物だ。</div><div class="page"></div>
+</div>
+<div class="entry">
+<div>世の中にある人工物はすべて、思考から生み出されたものなのだ。</div><div class="page">160頁17行</div>
+</div>
+<div class="entry">
+<div>意志あるところに道は開ける</div><div class="page">161頁2行</div>
+</div>
+<div class="entry">
+<div>明確な目標と計画があれば、アイディアを富に変えられるという驚きの真実がある。</div><div class="page">165頁5行</div>
+</div>
+<div class="entry">
+<div>アイディアとは、想像力を使って訴えることで人を動かすことだ。</div><div class="page">165頁10行</div>
+</div>
+<div class="entry">
+<div>自分がしてもらいたいことを、他人にもせよ。</div><div class="page">169頁1行</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section6">
+<h2 class="section-title">６．計画（本書では７章になっている）</h2>
+<div class="entry">
+<div><span class="bold">計画を作ると、無形の願望に具体的な形を与えたことになる。</span>このことを忘れないにしよう。</div><div class="page">154頁15行</div>
+</div>
+<div class="entry">
+<div><span class="bold">願望を実現する計画を立てた瞬間、あなたは思考を現実化するための一歩を踏み出しているのだ。</span></div><div class="page">154頁16行</div>
+</div>
+<div class="entry">
+<div>良い計画を立てるための４つの原則を紹介しよう</div><div class="page">174頁4行</div>
+</div>
+<div class="entry">
+<div>①計画の作成と実行のために、他人と協力する。「マスターマインド」の原則に従う。</div><div class="page">174頁6行</div>
+</div>
+<div class="entry">
+<div>②「マスターマインド・アライアンス」を作る前に、協力の見返しとして個々のメンバーにどのようなメリットを与えるかを決めておく。人は報酬がなければ動かない。ただしその報酬は必ずしも金銭的なものとは限らない</div><div class="page">174頁8行</div>
+</div>
+<div class="entry">
+<div>③マスターマインド・グループのメンバーと週に２回以上会い、計画の実現を目指す。</div><div class="page">174頁11行</div>
+</div>
+<div class="entry">
+<div>④マスターマインド・グループの各メンバーと調和を保つ。人間関係が良くなければ、マスターマインド・グループの原則の効果は得られない。</div><div class="page">174頁12行</div>
+</div>
+<div class="entry">
+<div>他人の頭脳や経験、知識、能力と想像力を借りなければならないこと。大きな成果を収めている人は必ずそうしている。</div><div class="page">175頁3行</div>
+</div>
+<div class="entry">
+<div>巨万の富を得るために必要な経験や教育、能力、知識をすべて持ち合わせている人はいない。だからこそ、この計画はあなたのマスターマインド・グループのメンバーが共同でつくらなければならない。</div><div class="page">175頁5行</div>
+</div>
+<div class="entry">
+<div>計画を自分で作成した場合は、必ず他のメンバーに確認してもらうこと</div><div class="page">175頁7行</div>
+</div>
+<div class="entry">
+<div>計画がうまくいかなかったら、うまくいく計画が見つかるまで、これを繰り返す。</div><div class="page">175頁8行</div>
+</div>
+<div class="entry">
+<div><span class="bold">「諦めたら勝利はない。勝者は決して途中でやめない」</span></div><div class="page">175頁6行</div>
+</div>
+<div class="entry">
+<div>マスターマインド・グループのメンバーには、失敗を深刻に受け止めない人を選ぼう。</div><div class="page">177頁8行</div>
+</div>
+<div class="entry">
+<div>以下、再就職する場合の注意事項が満載である</div><div class="page">177～</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section7">
+<h2 class="section-title">７．決断（本書では８章になっている）</h2>
+<div class="entry">
+<div>失敗した人の原因の中で「優柔不断」がトップになっている。</div><div class="page">226頁1行</div>
+</div>
+<div class="entry">
+<div>「決断力」の対極にあるのは「先延ばし」である。</div><div class="page">226頁4行</div>
+</div>
+<div class="entry">
+<div>資産１００万ドル以上の成功者の全員が「決断が迅速かつ一度決めたことは簡単に変更しない。</div><div class="page">226頁7行</div>
+</div>
+<div class="entry">
+<div>マスターマインド・グループのメンバーを集める時は、あなたの目的に深く共感し、賛同してくれる人だけを選ぶべきだ。</div><div class="page">227頁11行</div>
+</div>
+<div class="entry">
+<div>判断材料のために情報を他人から得なければならない場合は、その目的を知らせずに相手に訊ねよう。</div><div class="page">227頁16行</div>
+</div>
+<div class="entry">
+<div>決断力を高めるには、口を閉じて、目と耳を大きく開くべきだ</div><div class="page">228頁3行</div>
+</div>
+<div class="entry">
+<div>不用意に計画を話せば、それを横取りされかねない。</div><div class="page">228頁9行</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section8">
+<h2 class="section-title">８．忍耐力（本書では９章になっている）</h2>
+<div class="entry">
+<div>忍耐力は、願望をお金に変えるために欠かせない、忍耐力の基本とは、意志力である。</div><div class="page">244頁1行</div>
+</div>
+<div class="entry">
+<div>意志力と願望がうまく組み合わわさると、大きな効果を発揮する。</div><div class="page">244行2行</div>
+</div>
+<div class="entry">
+<div>富を築くには、この成功哲学の１３の要素全て実践する必要がある。これらの原理原則をよく理解し、粘り強く適用すること大切なのだ。</div><div class="page">244頁13行</div>
+</div>
+<div class="entry">
+<div>本書で説明した原理原則を毎日の習慣になるまで実践しなければならない。そうしなければ、お金のことを常に意識する状態にはなれないのだ。</div><div class="page">244頁5行</div>
+</div>
+<div class="entry">
+<div>豊かになろうという考え方がない所には、貧しさが入り込んでくる。</div><div class="page">244頁8行</div>
+</div>
+<div class="entry">
+<div>莫大な富を築いた人の中には、必要に応じて忍耐力を高めた人もいる。そうせざる得ない状況に身を置いていたからこそ、粘り強い人間になったのだ。</div><div class="page">247頁9行</div>
+</div>
+<div class="entry">
+<div>一部の人は、忍耐力の価値を経験によって学んでいる。彼らは敗北を一時的なものにすぎないとみなしている。<span class="bold">願望を強く心に抱いているため、敗北を最終的な勝利に変えるのだ。</span></div><div class="page">248頁6行</div>
+</div>
+<div class="entry">
+<div>忍耐力は心の状態だ。あらゆる心の状態と同様に、忍耐力にもはっきりとした動機がある。主なものは次の８つである。</div><div class="page">251頁6行</div>
+</div>
+<div class="entry">
+<div>①【明確な目的】強い動機は、困難を乗り越えるための原動力になる。</div><div class="page">251頁8行</div>
+</div>
+<div class="entry">
+<div>②【願望】強い願望を抱いている時は忍耐力は高まり維持しやすくなる。</div><div class="page">251頁10行</div>
+</div>
+<div class="entry">
+<div>③【自信】自らの能力を信じることで粘り強く計画を遂行できる。</div><div class="page">251頁11行</div>
+</div>
+<div class="entry">
+<div>④【具体的な計画】計画がしっかりしていれば、何があっても粘り強く前進できる。</div><div class="page">251頁13行</div>
+</div>
+<div class="entry">
+<div>⑤【正確な知識】経験や観測に基づく正確な知識を活かした計画は忍耐力を高める。</div><div class="page">251頁15行</div>
+</div>
+<div class="entry">
+<div>⑥【協力】共感や理解、調和のある協力は、忍耐力を高めてくれる。</div><div class="page">252頁1行</div>
+</div>
+<div class="entry">
+<div>⑦【意志力】計画策定に、思考を集中させる習慣があると忍耐力につながる。</div><div class="page">252頁2行</div>
+</div>
+<div class="entry">
+<div>⑧【習慣】忍耐力は習慣の結果である。心は日々の経験からつくられる。</div><div class="page">252頁3行</div>
+</div>
+<div class="entry">
+<div><span class="bold">アイディアは、思いついたらすぐに明確な計画を立て、行動に移してやらないと死んでしまう。</span></div><div class="page">253頁1行</div>
+</div>
+<div class="entry">
+<div><span class="bold">誰もが同じように、自分が人生に求める最大なものを追い求めることで、それを手に入れられるのである。</span></div><div class="page">263頁4行</div>
+</div>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section9">
+<h2 class="section-title">９．マスターマインド（本書では１０章になっている）</h2>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section10">
+<h2 class="section-title">１０．性エネルギーの転換（昇華）（本書では１１章になっている）</h2>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section11">
+<h2 class="section-title">１１．潜在意識（本書では１２章になっている）</h2>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section12">
+<h2 class="section-title">１２．脳（本書では１３章になっている）</h2>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="section13">
+<h2 class="section-title">１３．第六感（本書では１４章になっている）</h2>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+<img class="spacer" src="space.gif" width="1" height="1000" alt="">
+<section id="tenpu">
+<h2 class="section-title">基本は中村天風の言葉</h2>
+<div class="back"><a href="#mokuji">目次に戻る</a></div></section>
+</main>
 </body>
 </html>
