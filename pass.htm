@@ -85,27 +85,35 @@ button {
 </div>
 
 <script>
+
 function checkPassword() {
-    const correctPassword = "9280";
     const passwordInput = document.getElementById("password");
     const errorMessage = document.getElementById("error-message");
 
-    if (passwordInput.value === correctPassword) {
+    const password = passwordInput.value.trim();
 
-        // 下の x フォルダーにある index.htm へ移動
-        window.location.href = "x/index.htm";
+    if (password === "9280") {
+        // 9280 は index1.htm へ
+        window.location.assign("./x/index.htm?from=9280");
+        return;
+    }
 
-    } else {
+    if (password === "9281") {
+        // 9281 は index.htm へ
+        window.location.assign("./x/index1.htm?from=9281");
+        return;
+    }
+
+    {
         errorMessage.textContent =
             "パスワードが違います。もう一度入力してください。";
-
-        // 入力した内容を消して、入力欄へ戻す
         passwordInput.value = "";
         passwordInput.focus();
     }
 }
 
 // Enterキーでも確認できる
+
 document.getElementById("password").addEventListener(
     "keydown",
     function(event) {
