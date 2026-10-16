@@ -16,25 +16,34 @@
   .menu span { color:#ffd780; margin-left:0.3em; }
   .back { font-size:20px; }
 </style>
+<script>
+function openEgypt(number) {
+  const url = 'seishun_egypt/no' + number + '/egypt_viewer.htm';
+  const win = window.open(url, 'egyptPhotos' + number,
+    'width=1200,height=1000,resizable=yes,scrollbars=yes');
+  if (win) { win.focus(); return false; }
+  return true;
+}
+</script>
 </head>
 <body>
 <main>
   <h1>エジプト奮戦記</h1>
   <p class="subtitle">～ 砂漠の国での仕事・生活・出会いの記録 ～</p>
   <nav aria-label="エジプト奮戦記 目次">
-    <a class="menu" href="seishun_egypt/no1/000.htm">エジプト奮戦記 <span>ＮＯ1</span></a>
+    <a class="menu" href="seishun_egypt/no1/egypt_viewer.htm" onclick="return openEgypt(1);">エジプト奮戦記 <span>ＮＯ1</span></a>
 
-    <a class="menu" href="seishun_egypt/no2/000.htm">エジプト奮戦記 <span>ＮＯ2</span></a>
+    <a class="menu" href="seishun_egypt/no2/egypt_viewer.htm" onclick="return openEgypt(2);">エジプト奮戦記 <span>ＮＯ2</span></a>
 
-    <a class="menu" href="seishun_egypt/no3/000.htm">エジプト奮戦記 <span>ＮＯ3</span></a>
+    <a class="menu" href="seishun_egypt/no3/egypt_viewer.htm" onclick="return openEgypt(3);">エジプト奮戦記 <span>ＮＯ3</span></a>
 
-    <a class="menu" href="seishun_egypt/no4/000.htm">エジプト奮戦記 <span>ＮＯ4</span></a>
+    <a class="menu" href="seishun_egypt/no4/egypt_viewer.htm" onclick="return openEgypt(4);">エジプト奮戦記 <span>ＮＯ4</span></a>
 
-    <a class="menu" href="seishun_egypt/no5/000.htm">エジプト奮戦記 <span>ＮＯ5</span></a>
+    <a class="menu" href="seishun_egypt/no5/egypt_viewer.htm" onclick="return openEgypt(5);">エジプト奮戦記 <span>ＮＯ5</span></a>
 
-    <a class="menu" href="seishun_egypt/no6/000.htm">エジプト奮戦記 <span>ＮＯ6</span></a>
+    <a class="menu" href="seishun_egypt/no6/egypt_viewer.htm" onclick="return openEgypt(6);">エジプト奮戦記 <span>ＮＯ6</span></a>
 
-    <a class="menu" href="seishun_egypt/no7/000.htm">エジプト奮戦記 <span>ＮＯ7</span></a>
+    <a class="menu" href="seishun_egypt/no7/egypt_viewer.htm" onclick="return openEgypt(7);">エジプト奮戦記 <span>ＮＯ7</span></a>
   </nav>
   <a class="back" href="../shosai.htm">表紙に戻る</a>
 
