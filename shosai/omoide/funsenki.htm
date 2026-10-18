@@ -21,12 +21,15 @@ function openEgypt(number) {
   const url = 'seishun_egypt/no' + number + '/egypt_viewer.htm';
   const width = Math.min(1200, screen.availWidth);
   const height = Math.min(1000, screen.availHeight);
-  const left = Math.max(0, Math.round((screen.availWidth - width) / 2 + screen.availLeft));
-  const top = Math.max(0, Math.round((screen.availHeight - height) / 2 + screen.availTop));
+  const left = Math.max(0, Math.round((screen.availWidth - width) / 2 + (screen.availLeft || 0)));
+  const top = Math.max(0, Math.round((screen.availHeight - height) / 2 + (screen.availTop || 0)));
   const win = window.open(url, 'egyptPhotos' + number,
     'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',resizable=yes,scrollbars=yes');
-  if (win) { win.focus(); return false; }
-  return true;
+  if (win) {
+    win.focus();
+    return false;
+  }
+  return true; // ポップアップが禁止されている場合は通常のリンクで開く
 }
 </script>
 </head>
@@ -48,6 +51,13 @@ function openEgypt(number) {
     <a class="menu" href="seishun_egypt/no6/egypt_viewer.htm" onclick="return openEgypt(6);">エジプト奮戦記 <span>ＮＯ6</span></a>
 
     <a class="menu" href="seishun_egypt/no7/egypt_viewer.htm" onclick="return openEgypt(7);">エジプト奮戦記 <span>ＮＯ7</span></a>
+
+    <a class="menu" href="seishun_egypt/no8/egypt_viewer.htm" onclick="return openEgypt(8);">エジプト奮戦記 <span>ＮＯ8</span></a>
+
+    <a class="menu" href="seishun_egypt/no9/egypt_viewer.htm" onclick="return openEgypt(9);">エジプト奮戦記 <span>ＮＯ9</span></a>
+
+    <a class="menu" href="seishun_egypt/no10/egypt_viewer.htm" onclick="return openEgypt(10);">エジプト奮戦記 <span>ＮＯ10</span></a>
+
   </nav>
   <a class="back" href="../shosai.htm">表紙に戻る</a>
 
