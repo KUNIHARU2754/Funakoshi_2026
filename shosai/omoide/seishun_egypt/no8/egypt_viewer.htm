@@ -30,13 +30,34 @@ const photo=document.getElementById('photo');
 const message=document.getElementById('message');
 const label=document.getElementById('label');
 const prev=document.getElementById('prev');
+const EGYPT_LAST_VIEWED = 'egypt-last-viewed-at';
+const EGYPT_RESET_AFTER = 7 * 24 * 60 * 60 * 1000;
+function resetExpiredEgyptHistory() {
+  try {
+    const last = Number(localStorage.getItem(EGYPT_LAST_VIEWED));
+    if (last > 0 && (Date.now() - last >= EGYPT_RESET_AFTER || Date.now() < last)) {
+      for (let i = 1; i <= 10; i++) localStorage.removeItem('egypt-complete-' + i);
+      localStorage.removeItem(EGYPT_LAST_VIEWED);
+    }
+  } catch(e) {}
+}
+resetExpiredEgyptHistory();
+
 function filename(n){return String(n).padStart(3,'0')+'.jpg';}
 function show(n){
   if(n<1)return;
   const test=new Image();
   message.textContent='読み込み中…';
-  test.onload=()=>{index=n;photo.src=test.src;photo.style.display='block';message.textContent='';label.textContent='NO'+no+'　写真 '+String(index).padStart(3,'0');prev.disabled=index===1;};
-  test.onerror=()=>{message.textContent=n===1?'001.jpg が見つかりません。写真のファイル名を確認してください。':'次の写真 '+String(n).padStart(3,'0')+'.jpg は見つかりません。';};
+  test.onload=()=>{try { localStorage.setItem(EGYPT_LAST_VIEWED, String(Date.now())); } catch(e) {} index=n;photo.src=test.src;photo.style.display='block';message.textContent='';label.textContent='NO'+no+'　写真 '+String(index).padStart(3,'0');prev.disabled=index===1;};
+  test.onerror=()=>{
+    if(n===index+1 && index>=1){
+      try { localStorage.setItem('egypt-complete-' + no, 'yes'); } catch(e) {}
+      message.textContent='NO'+no+' は最後までご覧いただきました。目次のボタンが灰色になります。';
+      try { if(window.opener && !window.opener.closed && window.opener.refreshCompleted) window.opener.refreshCompleted(); } catch(e) {}
+    } else {
+      message.textContent=n===1?'001.jpg が見つかりません。写真のファイル名を確認してください。':'写真 '+String(n).padStart(3,'0')+'.jpg は見つかりません。';
+    }
+  };
   test.src=filename(n);
 }
 function move(delta){show(index+delta);}
