@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>パプアニューギニア南十次星の下で。</title>
+<style>
+html,body{height:100%;margin:0;background:#ccffcc;overflow:hidden}
+body{display:flex;flex-direction:column}
+.fixed-menu{flex:0 0 auto;background:#ccffcc;overflow-x:auto;}
+.button-table{margin:0 auto;border-collapse:collapse}
+.button-table img{display:block;border:0}
+.scroll-content{flex:1 1 auto;min-height:0;overflow-y:auto;padding:24px 0;}
+.scroll-content table{font-size:14pt;margin-left:auto;margin-right:auto}
+</style>
+<script>
+function newImage(arg) {
+	if (document.images) {
+		rslt = new Image();
+		rslt.src = arg;
+		return rslt;    }  }
+
+function changeImages() {
+	if (document.images && (preloadFlag == true)) {
+		for (var i=0; i<changeImages.arguments.length; i+=2) {
+			document[changeImages.arguments[i]].src = changeImages.arguments[i+1];
+		}  }  }
+
+var preloadFlag = false;
+function preloadImages() {
+	if (document.images) {
+		Bhyousi_01_over = newImage("Bhyousi_01-over.jpg");
+		Bmokuji_01_over = newImage("Bmokuji_01-over.jpg");
+		Bback_01_over   = newImage("Bback_01-over.jpg");
+        	Bnext_01_over   = newImage("Bnext_01-over.jpg");
+		preloadFlag = true;
+	} }
+  </script>
+</head><body onload="preloadImages();">
+<header class="fixed-menu"><table class="button-table">
+<tr>
+<td width="65"><img height="45" src="../shashin/hyos.jpg" width="65"/></td>
+<td width="65"><img height="45" src="../shashin/nfla.jpg" width="65"/></td>
+<td width="80">
+<a href="../../index.htm" onmouseout="changeImages('Bhyousi_01', 'Bhyousi_01.jpg'     ); return true;" onmouseover="changeImages('Bhyousi_01', 'Bhyousi_01-over.jpg'); return true;">
+<img border="0" height="45" name="Bhyousi_01" src="Bhyousi_01.jpg" width="80"/></a>
+</td>
+<td width="80">
+<a href="juji002.htm" onmouseout="changeImages('Bmokuji_01', 'Bmokuji_01.jpg'     ); return true;" onmouseover="changeImages('Bmokuji_01', 'Bmokuji_01-over.jpg'); return true;">
+<img border="0" height="45" name="Bmokuji_01" src="Bmokuji_01.jpg" width="80"/></a>
+</td>
+<td width="80">
+<a href="juji77.htm" onmouseout="changeImages('Bback_01', 'Bback_01.jpg'     ); return true;" onmouseover="changeImages('Bback_01', 'Bback_01-over.jpg'); return true;">
+<img border="0" height="45" name="Bback_01" src="Bback_01.jpg" width="80"/></a>
+</td>
+<td width="80">
+<a href="juji79.htm" onmouseout="changeImages('Bnext_01', 'Bnext_01.jpg'); return true;" onmouseover="changeImages('Bnext_01', 'Bnext_01-over.jpg'); return true;">
+<img border="0" height="45" name="Bnext_01" src="Bnext_01.jpg" width="80"/></a>
+</td>
+<td>　
+  </td>
+</tr>
+</table></header>
+<main class="scroll-content">
+<table>
+<td width="100">
+</td>
+<td width="600">
+<tt>
+<basefont size="14"/>
+<font color="#006633">
+<p style="line-height:180%">
+
+第７８　或る戦友からの便り
+<br/><br/>
+　昭和６０年９月１３日（１９８５年）。横浜在住の須貝謹二さんから次の文面のハガキを頂きました。
+<br/><br/>
+　　　　記
+<br/>
+前略・・・・森正樹氏が厚生省主催、東部ニユーギニア遺骨収拾派遣団の軍通代表として、ようやく彼の
+地に行くことに決定した。今回で、東部ニユーギニアの遺骨収拾は最後となる。昭和六十年九月九日森正
+樹氏上京し、偕行社での打ち合わせ会に出席した。昭和六十年十月七日、日本を出発し十月二十八日に帰
+国の計画で、ニユーギニアのカラワップ、ベンゼン、ニミンガイ、ベリンガ、イガ地域の軍通陣地内の遺
+骨を収拾すると言う。これらについて、参考事項がありましたら、教えて上げて下さい。
+<br/>
+・・・・中略・・・・四十年前の苛烈な戦場の思い出に釣り込まれます。どうか呉呉もご自愛下さい。
+<br/>
+<div align="right">草々</div>
+<img align="right" src="../shashin/jchi01.jpg"/>
+<br/><br/><br/><br/>
+</p></font></tt>
+</td>
+</table>
+</main>
+</body></html>

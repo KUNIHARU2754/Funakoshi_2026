@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>南十字星の下で</title><style>html,body{margin:0;height:100%;overflow:hidden;}body{background:#ccffcc}.page{height:100vh;height:100dvh;display:flex;flex-direction:column}.fixed-menu{flex:0 0 auto;overflow-x:auto;background:#ccffcc}.scrolling-text{flex:1 1 auto;min-height:0;overflow:auto;background:#ccffcc}.fixed-menu .button-bar{display:flex;justify-content:center;width:100%}.fixed-menu table{font-size:14pt;border-collapse:collapse}.fixed-menu img{display:block}.scrolling-text img{max-width:100%;height:auto}
+
+    html, body { margin: 0; padding: 0; }
+    body { background: #ccffcc; }
+    .button-bar { display: flex; justify-content: center; width: 100%; }
+    table { font-size: 14pt; border-collapse: collapse; }
+    td { vertical-align: middle; }
+    img { display: block; }
+    .feedback a { color: #ff0000; }
+    
+
+<!--
+  table {font-size:14pt;}
+-->
+</style><script>
+function newImage(arg) {
+	if (document.images) {
+		rslt = new Image();
+		rslt.src = arg;
+		return rslt;    }  }
+
+function changeImages() {
+	if (document.images && (preloadFlag == true)) {
+		for (var i=0; i<changeImages.arguments.length; i+=2) {
+			document[changeImages.arguments[i]].src = changeImages.arguments[i+1];
+		}  }  }
+
+var preloadFlag = false;
+function preloadImages() {
+	if (document.images) {
+	        Bhyousi_01_over = newImage("../moku/Bhyousi_01-over.jpg");
+		mokuji_01_over  = newImage("../moku/mokuji_01-over.jpg");
+		Bback_01_over   = newImage("../moku/Bback_01-over.jpg");
+        	Bnext_01_over   = newImage("../moku/Bnext_01-over.jpg");
+		preloadFlag = true;
+	} }
+  </script></head><body onload="preloadImages();"><div class="page"><header class="fixed-menu">
+<div class="button-bar">
+<table>
+<tr>
+<td width="65"><img height="45" src="../shashin/hyos.jpg" width="65"/></td>
+<td width="65"><img height="45" src="../shashin/nfla.jpg" width="65"/></td>
+<td width="80">
+<a href="../../index.htm" onmouseout="changeImages('Bhyousi_01', '../moku/Bhyousi_01.jpg'     ); return true;" onmouseover="changeImages('Bhyousi_01', '../moku/Bhyousi_01-over.jpg'); return true;">
+<img height="45" name="Bhyousi_01" src="../moku/Bhyousi_01.jpg" width="80"/></a>
+</td>
+<td width="80">
+<a href="juji002.htm" onmouseout="changeImages('mokuji_01', '../moku/mokuji_01.jpg'     ); return true;" onmouseover="changeImages('mokuji_01', '../moku/mokuji_01-over.jpg'); return true;">
+<img height="45" name="mokuji_01" src="../moku/mokuji_01.jpg" width="80"/></a>
+</td>
+<td width="80">
+<a href="juji000.htm" onmouseout="changeImages('Bback_01', '../moku/Bback_01.jpg'     ); return true;" onmouseover="changeImages('Bback_01', '../moku/Bback_01-over.jpg'); return true;">
+<img height="45" name="Bback_01" src="../moku/Bback_01.jpg" width="80"/></a>
+</td>
+<td width="80">
+<a href="juji002.htm" onmouseout="changeImages('Bnext_01', '../moku/Bnext_01.jpg'); return true;" onmouseover="changeImages('Bnext_01', '../moku/Bnext_01-over.jpg'); return true;">
+<img height="45" name="Bnext_01" src="../moku/Bnext_01.jpg" width="80"/></a>
+</td>
+</tr>
+</table>
+</div>
+</header><main class="scrolling-text">
+<table style="margin-left:auto;margin-right:auto;">
+<td width="50">
+</td>
+<td style="text-align:left;" width="550">
+<font color="#006633">
+<p style="line-height:175%">
+
+　　まえがき
+<br/><br/>
+　第二次世界大戦が終り、すでに４３年の歳月が過ぎた。私の青春は志に反して、日支事変（日中戦争）とソ満国境守備
+に始まり、ガダルカナル、東部ニユーギニア方面の南太平洋作戦に明け暮れた。昭和１６年１２月８日（１９４１年）米英和
+に宣戦布告と同時にソ連極東軍（６０万）と北満、孫呉で一ケ年間対陣し、酷寒零下４０度をこす国境警備の任務もつら
+かった。それ以上に灼熱４０度を越すジヤングルの中の戦闘の方はもっと強烈な印象として心に残っている。秘境、魔境
+と恐れられ、人喰い人種も住む東部ニユーギニア戦線に３年３ケ月という長期に亘って、日本の本国から糧道を断たれな
+がら、米英連合軍と苛烈悲惨な戦闘を続けたことは決して忘れられない。
+<br/><img align="right" height="308" src="../shashin/jp010-1.jpg" width="300"/> 
+　戦いすんで、かって戦場と化した東部ニユーギニアは今、パプア・ニユーギニア国として昭和５４年９月１４日
+（１９８９年）に独立した。国土はビスマルク群島、ソロモン群島、東部ニユーギニアからなっている。黒と赤地の国旗に、
+黒地には南十字星が輝き、赤地には極楽鳥が舞っている。この東部ニユーギニアに１５万有余の日本軍が進攻し、再び日
+本に生還できた将兵は僅か１万余名であった。護国の鬼となった１３万有余名の白骨がいまなお彼の地のジヤングルの中
+に静に眠っている。ご冥福をお祈りします。なんとも非情な戦場でした。
+
+<pre><font color="#006633" size="5pt"><p style="line-height:175%">
+　　　　　　　昭和６３年８月１５日（１９８８年）
+　　　　　　　南方総軍　南海派遣軍
+　　　　　　　第八方面軍隷下・第十八軍（猛軍)・軍通信隊無線小隊長
+                    舩　越　安　治
+</p></font>
+
+</pre></p></font></td>
+</table>
+
+</main></div></body></html>
