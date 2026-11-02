@@ -37,6 +37,31 @@ function preloadImages() {
 <!--
   table {font-size:14pt;}
 -->
+
+/* 本文の表示設定 */
+.scroll-content table, .scrolling-text table, .content table, main table { margin-left:auto; margin-right:auto; text-align:left; }
+.scroll-content table[width="700"], .scrolling-text table[width="700"], .content table[width="700"], main table[width="700"] { width:700px; }
+.scroll-content td, .scrolling-text td, .content td, main td { text-align:left; }
+.scroll-content p, .scrolling-text p, .content p, main p { line-height:170%; text-align:left; }
+.scroll-content, .scrolling-text, .content, main { font-size:21px; }
+.scroll-content table, .scrolling-text table, .content table, main table { font-size:21px; }
+
+
+/* juji02.htm と同じ本文表示設定 */
+main, main.content, main.scroll-content, main.scrolling-text, main.scroll-article, main#reading-area, main#article {font-size:21px;}
+main table {margin-left:auto; margin-right:auto; text-align:left; font-size:21px;}
+main td {text-align:left; font-size:21px;}
+main p {line-height:170% !important; text-align:left; font-size:21px;}
+main tt, main font, main span {font-size:inherit;}
+
+
+/* 本文の統一表示（修正版） */
+main {font-size:21px;}
+main table {font-size:21px; margin-left:auto; margin-right:auto; text-align:left;}
+main td, main p {font-size:21px; text-align:left;}
+main p {line-height:170% !important;}
+main tt, main font {font-size:21px;}
+main table[width="800"] {width:800px;}
 </style>
 
 <style>
@@ -82,15 +107,15 @@ body { display:flex; flex-direction:column; overflow:hidden; }
 </div>
 <main id="reading-area">
 
-<div style="max-width:700px;margin:0 auto;">
+<div style="width:800px;max-width:100%;margin:0 auto;">
 
-<table style="margin:0 auto;">
- <td width=100>
+<table style="margin-left:auto;margin-right:auto;text-align:left;" width="800">
+ <td width="100" style="text-align:left;">
  </td>
- <td width=600>
+ <td width="700" style="text-align:left;">
  <tt>
  <font color="#006633">
- <p style="line-height:180%">
+ <p style="line-height:170%">
 
 第２１　民間人の処刑
 <br><br>

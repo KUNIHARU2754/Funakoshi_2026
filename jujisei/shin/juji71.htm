@@ -9,6 +9,23 @@ body{display:flex;flex-direction:column}
 .button-table img{display:block;border:0}
 .scroll-content{flex:1 1 auto;min-height:0;overflow-y:auto;padding:24px 0;}
 .scroll-content table{font-size:14pt;margin-left:auto;margin-right:auto}
+
+/* 本文の表示設定 */
+.scroll-content table, .scrolling-text table, .content table, main table { margin-left:auto; margin-right:auto; text-align:left; }
+.scroll-content table[width="700"], .scrolling-text table[width="700"], .content table[width="700"], main table[width="700"] { width:700px; }
+.scroll-content td, .scrolling-text td, .content td, main td { text-align:left; }
+.scroll-content p, .scrolling-text p, .content p, main p { line-height:170%; text-align:left; }
+.scroll-content, .scrolling-text, .content, main { font-size:21px; }
+.scroll-content table, .scrolling-text table, .content table, main table { font-size:21px; }
+
+
+/* juji02.htm と同じ本文表示設定 */
+main, main.content, main.scroll-content, main.scrolling-text, main.scroll-article, main#reading-area, main#article {font-size:21px;}
+main table {margin-left:auto; margin-right:auto; text-align:left; font-size:21px;}
+main td {text-align:left; font-size:21px;}
+main p {line-height:170% !important; text-align:left; font-size:21px;}
+main tt, main font, main span {font-size:inherit;}
+
 </style>
 <script>
 function newImage(arg) {
@@ -59,14 +76,14 @@ function preloadImages() {
 </tr>
 </table></header>
 <main class="scroll-content">
-<table>
-<td width="100">
+<table style="margin-left:auto;margin-right:auto;text-align:left;" width="800">
+<td width="100" style="text-align:left;">
 </td>
-<td width="600">
+<td width="700" style="text-align:left;">
 <tt>
 <basefont size="14"/>
 <font color="#006633">
-<p style="line-height:180%">
+<p style="line-height:170%">
 
 第７１　遂に英軍に武装解除される
 <br/><br/>

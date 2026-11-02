@@ -9,6 +9,27 @@ body{display:flex;flex-direction:column}
 .button-table img{display:block;border:0}
 .scroll-content{flex:1 1 auto;min-height:0;overflow-y:auto;padding:24px 0;}
 .scroll-content table{font-size:14pt;margin-left:auto;margin-right:auto}
+
+/* 本文の表示設定 */
+.scroll-content table, .scrolling-text table, .content table, main table { margin-left:auto; margin-right:auto; text-align:left; }
+.scroll-content table[width="700"], .scrolling-text table[width="700"], .content table[width="700"], main table[width="700"] { width:700px; }
+.scroll-content td, .scrolling-text td, .content td, main td { text-align:left; }
+.scroll-content p, .scrolling-text p, .content p, main p { line-height:170%; text-align:left; }
+.scroll-content, .scrolling-text, .content, main { font-size:21px; }
+.scroll-content table, .scrolling-text table, .content table, main table { font-size:21px; }
+
+
+/* juji02.htm と同じ本文表示設定 */
+main, main.content, main.scroll-content, main.scrolling-text, main.scroll-article, main#reading-area, main#article {font-size:21px;}
+main table {margin-left:auto; margin-right:auto; text-align:left; font-size:21px;}
+main td {text-align:left; font-size:21px;}
+main p {line-height:170% !important; text-align:left; font-size:21px;}
+main tt, main font, main span {font-size:inherit;}
+
+/* 75ページの長い文章で表が横に広がらないよう固定 */
+main.scroll-content > table[width="800"] {width:800px !important; max-width:800px; table-layout:fixed;}
+main.scroll-content > table[width="800"] > tbody > tr > td:first-child {width:100px;}
+main.scroll-content > table[width="800"] > tbody > tr > td:nth-child(2) {width:700px; overflow-wrap:anywhere;}
 </style>
 <script>
 function newImage(arg) {
@@ -61,19 +82,19 @@ function preloadImages() {
 
 <main class="scroll-content">
 
-<table>
-<td width="100">
+<table style="margin-left:auto;margin-right:auto;text-align:left;" width="800">
+<td width="100" style="text-align:left;">
 </td>
-<td width="600">
+<td width="700" style="text-align:left;">
 <tt>
 <basefont size="14"/>
 <font color="#006633">
-<p style="line-height:180%">
+<p style="line-height:170%">
 
 第７５　引き揚げ船に乗船、日本に向かう
 <br/><br/>
 　日本から迎えに来た「ひかわ丸」に、乞食同前の格好をした軍通信隊の我々は、喜んで乗船しました。余りにも嬉しく、日本に帰国したいという一心で、割り当てられた船室に着くまでは、何にも目にとまりませんでした。無事に乗船し落ち着いたので、皆んなは安心して、手足を延ばし床にごろりと横になって寝転びました。私共が船室に落ち着いた頃合を見計らったように、赤い帽子を被り肩から胸に参謀肩章を
-付けた英軍士官が従兵二名に守られて、私共が居る船内にやって来ました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+付けた英軍士官が従兵二名に守られて、私共が居る船内にやって来ました。
 <br/>
 　これを見た時、これは大変だ！と思いました。無事に乗船したのに、この機に及んで、何が起きたのだろう？と心配になりました。何が心配の原因だか
 分かりませんでしたが、一瞬、身の危険を感じました。戦争に負けた敗者ですから、誠にビクビクした一時でありました。何かは知りませんが、日本軍の将校と喋っていました。が、やがて我々の部屋を出て行き、やれやれと安心しました。それから間もなく、船が岸壁を離れた、ことを知らされ、これで無事に日本に帰れるぞ、と大安心しました。誰かが大声で
@@ -81,7 +102,7 @@ function preloadImages() {
 『オーイ。皆んな出て来い！あれがウエワクだ。これが見納めだぞ！！』
 と叫んだ。船の甲板には、大勢の将兵が黙ったままウエワクをじーっと見つめて居ました。暗い夜空の向こうに、ウエワクの山々が黒く聳え海岸まで迫っていました。ウエワクが、こんな山々の麓に、あるという事を初めて知りました。月明りはなく夜空には星が瞬いていました。
 <br/>
-　さて、船内では『三門博』という兵が、皆に浪曲を聞かせてくれました。何年ぶりかに聞く浪曲でした。『三門博』という芸人を不幸にして今まで知りませんでした。有名な芸能人ださうです。皆んなは生還した喜びを満喫して居るようでした。船内が大部寒くなって来ました。　　　　　　　　　　　　　　　　　　　　　　　
+　さて、船内では『三門博』という兵が、皆に浪曲を聞かせてくれました。何年ぶりかに聞く浪曲でした。『三門博』という芸人を不幸にして今まで知りませんでした。有名な芸能人ださうです。皆んなは生還した喜びを満喫して居るようでした。船内が大部寒くなって来ました。
 <br/>
 『寒いなあー、此処はどこだろう？』と誰かが呟いたら、すかさず
 <br/>
