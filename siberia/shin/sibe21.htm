@@ -14,7 +14,7 @@
 html,body{margin:0;padding:0;height:100%;overflow:hidden;}
 body{display:flex;flex-direction:column;background-color:#ffffcc;background-image:url("../../jujisei/shashin/note01.gif");}
 .nav-wrap{flex:0 0 auto;width:100%;text-align:center;padding:8px 0 4px;overflow-x:auto;box-sizing:border-box;}
-.nav{display:inline-table;border-collapse:collapse;font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;font-size:13pt;line-height:1.2;white-space:nowrap;}
+.nav{display:inline-table;border-collapse:collapse;font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;font-size:13pt;line-height:170%;white-space:nowrap;}
 .nav td{padding:0 12px;vertical-align:middle;text-align:center;border:0;}
 .nav td.logo{padding-right:10px;}
 .nav img{display:block;border:0;}
@@ -24,6 +24,12 @@ body{display:flex;flex-direction:column;background-color:#ffffcc;background-imag
 .reading-area table{font-size:14pt;}
 .reading-area>table{margin-left:auto;margin-right:auto;}
 .reading-area img{max-width:100%;height:auto;}
+</style><style>
+/* 本文の文字設定 */
+.reading-area, .reading-area table, .scrolling-text, .scrolling-text table, .main-content, .main-content table, .article-scroll, .article-scroll table { font-size:16pt !important; color:#603000 !important; }
+.reading-area td, .scrolling-text td, .main-content td, .article-scroll td { color:#603000 !important; }
+body { color:#603000; }
+body > table, .page > table {font-size:16pt !important;color:#603000 !important;}
 </style></head>
 <body><div class="nav-wrap">
 <table border="0" cellpadding="0" cellspacing="0" class="nav">
