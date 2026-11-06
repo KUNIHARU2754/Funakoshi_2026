@@ -18,17 +18,24 @@ body{background:#ffffcc url('../../jujisei/shashin/note01.gif') repeat;color:#00
 .fixed-nav img{display:block;}
 main{padding-top:var(--nav-height,56px);border:0;}
 main table{font-size:13pt;}
- .navigation a, .top-nav a {font-size:21px;} </style></head>
+ .navigation a, .top-nav a {font-size:21px;} 
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+.article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+</style></head>
 <body><header class="fixed-nav" id="fixed-nav"><span><img alt="ロゴ" src="../../pic/oyalogos.gif"/></span><span><a href="../../index.htm">玄関に戻る</a></span><span><a href="zare19.htm">前に戻る</a></span><span><a href="zare00.htm">目次に戻る</a></span><span><a href="zare21.htm">次に進む</a></span></header>
 <main id="content">
 <table align="center" style=";margin-left:auto;margin-right:auto;" width="700">
 <tr>
 <td style=";text-align:left;" width="50"></td>
-<td style=";text-align:left;" width="650"><font style="font-size:21px; color:#703800;">
+<td style=";text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><div class="article-fixed-title"><span class="article-title-number">２０．</span>「おい！俺の体は頭からつま先までシャンプーだらけなんだよ。冗談はよせ。
+待っていたのは良く冷えたミネラルウォーター。　ツメテー・シヌ！」</div>
+
 <p style="line-height: 170%; text-align: left;">
 
-<br/>２０．「おい！俺の体は頭からつま先までシャンプーだらけなんだよ。冗談はよせ。
-待っていたのは良く冷えたミネラルウォーター。　ツメテー・シヌ！」
 <br/><br/>
 　赴任した頃はしょっちゅう停電、断水があったが、半年を過ぎた頃には頻度が少なくなってきた。仕事は４時半に終わり
 部屋には５時頃には戻っている。晴天が続き乾燥しているので気持ちがよい。毎夕方食事前にシャワーを浴びる習慣になっていた。
@@ -49,4 +56,19 @@ main table{font-size:13pt;}
 </main>
 <script>
 (function(){const nav=document.getElementById('fixed-nav');function adjust(){document.documentElement.style.setProperty('--nav-height',nav.getBoundingClientRect().height+'px');}window.addEventListener('load',adjust);window.addEventListener('resize',adjust);adjust();})();
+</script><script>
+(function(){
+  const title=document.querySelector('.article-fixed-title');
+  const nav=document.getElementById('fixed-nav')||document.querySelector('.fixed-nav');
+  const main=document.querySelector('main');
+  if(!title||!main)return;
+  function adjustTitle(){
+    const navHeight=nav?nav.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--nav-height',navHeight+'px');
+    main.style.paddingTop=(navHeight+title.getBoundingClientRect().height+8)+'px';
+  }
+  window.addEventListener('load',adjustTitle);
+  window.addEventListener('resize',adjustTitle);
+  adjustTitle();
+})();
 </script></body></html>

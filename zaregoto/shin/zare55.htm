@@ -15,16 +15,31 @@ body{background:#ffffcc url("../../jujisei/shashin/note01.gif") repeat;}
 .topnav{position:sticky;top:0;z-index:10;display:flex;justify-content:center;align-items:center;gap:18px;padding:6px 0;margin:0;background:#ffffcc url("../../jujisei/shashin/note01.gif") repeat;font-size:13pt;}
 .topnav span,.topnav a{white-space:nowrap;}
 .topnav img{display:block;}
- .navigation a, .top-nav a {font-size:21px;} </style></head><body>
-<div class="topnav"><span><img alt="ロゴ" src="../../pic/oyalogos.gif"/></span><span><a href="../../index.htm">玄関に戻る</a></span><span><a href="zare54.htm">前に戻る</a></span><span><a href="zare00.htm">目次に戻る</a></span><span><a href="zare56.htm">次に進む</a></span></div>
+ .navigation a, .top-nav a {font-size:21px;} 
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+.article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+
+/* 21番以降: 上部メニューと題目を一体化して固定 */
+.zare-fixed-shell{position:fixed;top:0;left:0;right:0;z-index:1000;background:#ffffcc url("../files/notes.jpg") repeat;}
+.zare-fixed-shell .zare-menu{position:relative;top:auto;z-index:auto;font-size:21px;}
+.zare-fixed-shell .zare-menu a,.zare-fixed-shell .zare-menu a:link,.zare-fixed-shell .zare-menu a:visited{font-size:21px !important;line-height:170%;}
+.zare-fixed-shell .article-fixed-title{position:relative;top:auto;left:auto;transform:none;z-index:auto;box-sizing:border-box;width:650px;max-width:none;margin-left:max(0px,calc(50% - 300px));padding:3px 0;background:#ffffcc url("../files/notes.jpg") repeat;color:#703800;font-size:21px;line-height:170%;}
+
+body{display:block !important;overflow:visible !important;height:auto !important;}main,main.content,main.article-scroll,.content-scroll{overflow:visible !important;height:auto !important;min-height:0 !important;padding-top:0 !important;}
+</style></head><body>
+<div class="zare-fixed-shell"><div class="zare-menu topnav"><span><img alt="ロゴ" src="../../pic/oyalogos.gif"/></span><span><a href="../../index.htm">玄関に戻る</a></span><span><a href="zare54.htm">前に戻る</a></span><span><a href="zare00.htm">目次に戻る</a></span><span><a href="zare56.htm">次に進む</a></span></div><div class="article-fixed-title"><span class="article-title-number">５５．</span>「大ピンチ」その２(エジプト)</div></div>
 <main>
 
 <table align="center" style=";margin-left:auto;margin-right:auto;" width="700">
 <tr>
 <td style=";text-align:left;" width="50"></td>
-<td style=";text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><p style="line-height: 170%;text-align:left;">
-<br/>５５．「大ピンチ」その２(エジプト)
-<br/><br/>
+<td style=";text-align:left;" width="650"><font style="font-size:21px; color:#703800;">
+<p style="line-height: 170%;text-align:left;">
+
 　石灰石を焼いて生石灰を作る工場の操業方法をエジプト人に教えていた。安全上から生石灰の取り扱い
 について注意をしていた。濡れた手で触らない、汗をかいた体に生石灰が付くと軽いやけどをするから肌
 を出さない、目にはいると最悪失明するので保護具を着用する等々と話した。<br/>
@@ -64,4 +79,14 @@ body{background:#ffffcc url("../../jujisei/shashin/note01.gif") repeat;}
 <img src="../../WORLDTOWN/files/02ph/S/Segypt025.jpg" align="left" width="267" height="174" hspace="10">
 -->
 
-</main></body></html>
+</main><script>
+(function(){
+  const shell=document.querySelector('.zare-fixed-shell');
+  if(!shell)return;
+  function adjust(){document.body.style.paddingTop=(shell.getBoundingClientRect().height+8)+'px';}
+  window.addEventListener('load',adjust);
+  window.addEventListener('resize',adjust);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(adjust);
+  adjust();
+})();
+</script></body></html>

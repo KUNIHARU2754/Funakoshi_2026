@@ -14,15 +14,30 @@
 <meta charset="utf-8"/>
 <meta content="noindex,nofollow" name="robots"/>
 <title>世界の戯言25</title>
-<style>body{margin:0;background-color:#ffffcc;} .topnav{position:sticky;top:0;z-index:10;display:flex;justify-content:center;align-items:center;gap:18px;padding:6px 0;background:#ffffcc url("../../jujisei/shashin/note01.gif") repeat;} .topnav a{white-space:nowrap;text-decoration:underline;} table{font-size:13pt;} .navigation a, .top-nav a {font-size:21px;} </style></head>
-<body background="../../jujisei/shashin/note01.gif" bgcolor="#FFFFFF"><div class="topnav"><span><img alt="ロゴ" src="../../pic/oyalogos.gif"/></span><span><a href="../../index.htm" target="_top">玄関に戻る</a></span><span><a href="zare24.htm" target="_top">前に戻る</a></span><span><a href="zare00.htm" target="_top">目次に戻る</a></span><span><a href="zare26.htm" target="_top">次に進む</a></span></div>
+<style>body{margin:0;background-color:#ffffcc;} .topnav{position:sticky;top:0;z-index:10;display:flex;justify-content:center;align-items:center;gap:18px;padding:6px 0;background:#ffffcc url("../../jujisei/shashin/note01.gif") repeat;} .topnav a{white-space:nowrap;text-decoration:underline;} table{font-size:13pt;} .navigation a, .top-nav a {font-size:21px;} 
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+.article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+
+/* 21番以降: 上部メニューと題目を一体化して固定 */
+.zare-fixed-shell{position:fixed;top:0;left:0;right:0;z-index:1000;background:#ffffcc url("../files/notes.jpg") repeat;}
+.zare-fixed-shell .zare-menu{position:relative;top:auto;z-index:auto;font-size:21px;}
+.zare-fixed-shell .zare-menu a,.zare-fixed-shell .zare-menu a:link,.zare-fixed-shell .zare-menu a:visited{font-size:21px !important;line-height:170%;}
+.zare-fixed-shell .article-fixed-title{position:relative;top:auto;left:auto;transform:none;z-index:auto;box-sizing:border-box;width:650px;max-width:none;margin-left:max(0px,calc(50% - 300px));padding:3px 0;background:#ffffcc url("../files/notes.jpg") repeat;color:#703800;font-size:21px;line-height:170%;}
+
+body{display:block !important;overflow:visible !important;height:auto !important;}main,main.content,main.article-scroll,.content-scroll{overflow:visible !important;height:auto !important;min-height:0 !important;padding-top:0 !important;}
+</style></head>
+<body background="../../jujisei/shashin/note01.gif" bgcolor="#FFFFFF"><div class="zare-fixed-shell"><div class="zare-menu topnav"><span><img alt="ロゴ" src="../../pic/oyalogos.gif"/></span><span><a href="../../index.htm" target="_top">玄関に戻る</a></span><span><a href="zare24.htm" target="_top">前に戻る</a></span><span><a href="zare00.htm" target="_top">目次に戻る</a></span><span><a href="zare26.htm" target="_top">次に進む</a></span></div><div class="article-fixed-title"><span class="article-title-number">２５．</span>「道路横断は怖い」</div></div>
 <table align="center" style=";margin-left:auto;margin-right:auto;" width="700">
 <tr>
 <td style=";text-align:left;" width="50"></td>
-<td style=";text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><p style="line-height: 170%;text-align:left;">
+<td style=";text-align:left;" width="650"><font style="font-size:21px; color:#703800;">
+
 <p style="line-height: 170%;text-align:left;">
-<br/>２５．「道路横断は怖い」
-<br/><br/>
+
 　エジプト、アレキサンドリアにも道路には横断歩道が有ったと思う。エジプト人があまり横断歩道を使わないか
 らなのか間隔が空いていたか無かった様にも思う、定かではない。ある日タクシーで町を見学していた、道路幅は
 狭くはないが、道路の左右に荷車がおかれ人と車の通行も多く道路は狭く感じた。年の頃５０位の女性が頭に縦に
@@ -41,8 +56,18 @@
 
 <br/>
 <br/><br/><br/><br/>
-</p></p></font></td>
+</p></font></td>
 </tr>
 </table>
-</body>
+<script>
+(function(){
+  const shell=document.querySelector('.zare-fixed-shell');
+  if(!shell)return;
+  function adjust(){document.body.style.paddingTop=(shell.getBoundingClientRect().height+8)+'px';}
+  window.addEventListener('load',adjust);
+  window.addEventListener('resize',adjust);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(adjust);
+  adjust();
+})();
+</script></body>
 </html>

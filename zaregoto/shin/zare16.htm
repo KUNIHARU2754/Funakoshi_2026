@@ -18,7 +18,14 @@ body{background:#ffffcc url('../../jujisei/shashin/note01.gif') repeat;color:#00
 .fixed-nav img{display:block;}
 main{padding-top:var(--nav-height,56px);border:0;}
 main table{font-size:13pt;}
- .navigation a, .top-nav a {font-size:21px;} </style></head>
+ .navigation a, .top-nav a {font-size:21px;} 
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+.article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+</style></head>
 <body><header class="fixed-nav" id="fixed-nav">
 <div class="nav-item"><img alt="ロゴ" src="../../pic/oyalogos.gif"/></div>
 <div class="nav-item"><a href="../../index.htm">玄関に戻る</a></div>
@@ -30,10 +37,10 @@ main table{font-size:13pt;}
 <table style="margin-left:auto;margin-right:auto;text-align:left;" width="700">
 <tr>
 <td style="text-align:left;" width="50"></td>
-<td style="text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><p style="line-height: 170%;text-align:left;">
+<td style="text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><div class="article-fixed-title"><span class="article-title-number">１６．</span>「美人を見て眩暈がする、鼻の下が延びるは本当なんだ？」</div>
+
 <a name="16"></a><p style="line-height: 170%;text-align:left;">
-<br/>１６．「美人を見て眩暈がする、鼻の下が延びるは本当なんだ？」
-<br/><br/>
+
 　アレキサンドリアに赴任すると、単身赴任者が多く１３０人位いた。男ばかりの世界
 である。イスラム圏では当たり前で事務所も男１００％の世界、茶坊主も男。誰が名付けたか
 この茶坊主とは会社内にある喫茶店に勤めるウエイターのこと。この話は別にする事にし、今回は眩暈と鼻
@@ -63,10 +70,25 @@ main table{font-size:13pt;}
 分にと思いビックリした瞬間、鼻の下が３センチ位延びるのを私は偶然観察してしまった。
 「本当に鼻の下が延びるんだと」と感心した。
 <br/><br/><br/><br/><br/>
-</p></p></font></td>
+</p></font></td>
 </tr>
 </table>
 </main>
 <script>
 (function(){const nav=document.getElementById('fixed-nav');function adjust(){document.documentElement.style.setProperty('--nav-height',nav.getBoundingClientRect().height+'px');}window.addEventListener('load',adjust);window.addEventListener('resize',adjust);adjust();})();
+</script><script>
+(function(){
+  const title=document.querySelector('.article-fixed-title');
+  const nav=document.getElementById('fixed-nav')||document.querySelector('.fixed-nav');
+  const main=document.querySelector('main');
+  if(!title||!main)return;
+  function adjustTitle(){
+    const navHeight=nav?nav.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--nav-height',navHeight+'px');
+    main.style.paddingTop=(navHeight+title.getBoundingClientRect().height+8)+'px';
+  }
+  window.addEventListener('load',adjustTitle);
+  window.addEventListener('resize',adjustTitle);
+  adjustTitle();
+})();
 </script></body></html>

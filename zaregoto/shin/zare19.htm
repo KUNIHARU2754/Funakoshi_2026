@@ -18,16 +18,23 @@ body{background:#ffffcc url('../../jujisei/shashin/note01.gif') repeat;color:#00
 .fixed-nav img{display:block;}
 main{padding-top:var(--nav-height,56px);border:0;}
 main table{font-size:13pt;}
- .navigation a, .top-nav a {font-size:21px;} </style></head>
+ .navigation a, .top-nav a {font-size:21px;} 
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+.article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+</style></head>
 <body><header class="fixed-nav" id="fixed-nav"><span><img alt="ロゴ" src="../../pic/oyalogos.gif"/></span><span><a href="../../index.htm">玄関に戻る</a></span><span><a href="zare18.htm">前に戻る</a></span><span><a href="zare00.htm">目次に戻る</a></span><span><a href="zare20.htm">次に進む</a></span></header>
 <main id="content">
 <table style="margin-left:auto;margin-right:auto;text-align:left;" width="700">
 <tr>
 <td style="text-align:left;" width="50"></td>
-<td style="text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><p style="line-height: 170%;text-align:left;">
+<td style="text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><div class="article-fixed-title">１９「遂に銃口をむけられてしまった。殺されるのか？」</div>
+
 <p style="line-height: 170%;text-align:left;">
-<br/>１９「遂に銃口をむけられてしまった。殺されるのか？」
-<br/><br/>
+
 　初めてカイロに降り立ち車でアレキサンドリアに向かった。空港を後にしてカイロ市内にさしかかると路上に
 機関銃を持った兵士が一定間隔で立っている。この光景は日本では絶対にお目にかからないものであるが、物騒である。
 改めて日本の安全享受に感謝するが、この光景は気味が悪い。何らかの因縁を付けられて銃口を向けられ発射されては
@@ -47,10 +54,25 @@ main table{font-size:13pt;}
 身を案じた。兵士はようやく私が居ることに気づき銃を構えるのを止めてくれた。ほっとした。犬も幸い命拾いしてどこかに逃げていった。
 繁殖しすぎるから銃殺とは何とも乱暴な国であると感じた。日本の動物はまだまだ幸せかもしれない。
 <br/><br/><br/><br/><br/>
-</p></p></font></td>
+</p></font></td>
 </tr>
 </table>
 </main>
 <script>
 (function(){const nav=document.getElementById('fixed-nav');function adjust(){document.documentElement.style.setProperty('--nav-height',nav.getBoundingClientRect().height+'px');}window.addEventListener('load',adjust);window.addEventListener('resize',adjust);adjust();})();
+</script><script>
+(function(){
+  const title=document.querySelector('.article-fixed-title');
+  const nav=document.getElementById('fixed-nav')||document.querySelector('.fixed-nav');
+  const main=document.querySelector('main');
+  if(!title||!main)return;
+  function adjustTitle(){
+    const navHeight=nav?nav.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--nav-height',navHeight+'px');
+    main.style.paddingTop=(navHeight+title.getBoundingClientRect().height+8)+'px';
+  }
+  window.addEventListener('load',adjustTitle);
+  window.addEventListener('resize',adjustTitle);
+  adjustTitle();
+})();
 </script></body></html>

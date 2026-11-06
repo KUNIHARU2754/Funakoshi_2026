@@ -3,14 +3,13 @@
 <html lang="ja">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ4227GEJM"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TQ4227GEJM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-TQ4227GEJM');
 </script>
-
 <meta charset="utf-8"/>
 <meta content="noindex,nofollow" name="robots"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -41,7 +40,25 @@
     .top-nav a {
       white-space: nowrap;
     }
-  </style>
+  
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+
+/* 21番以降: 上部メニューと題目を一体化して固定 */
+.zare-fixed-shell{position:fixed;top:0;left:0;right:0;z-index:1000;background:#ffffcc url("../files/notes.jpg") repeat;}
+.zare-fixed-shell .zare-menu{position:relative;top:auto;z-index:auto;font-size:21px;}
+.zare-fixed-shell .zare-menu a,.zare-fixed-shell .zare-menu a:link,.zare-fixed-shell .zare-menu a:visited{font-size:21px !important;line-height:170%;}
+.zare-fixed-shell .article-fixed-title{position:relative;top:auto;left:auto;transform:none;z-index:auto;box-sizing:border-box;width:650px;max-width:none;margin-left:max(0px,calc(50% - 300px));padding:3px 0;background:#ffffcc url("../files/notes.jpg") repeat;color:#703800;font-size:21px;line-height:170%;}
+
+body{display:block !important;overflow:visible !important;height:auto !important;}main,main.content,main.article-scroll,.content-scroll{overflow:visible !important;height:auto !important;min-height:0 !important;padding-top:0 !important;}
+
+/* 本文の行間を全ページで170%に統一 */
+main, main p, main td, main font, .article, .article p, .article td, .article font, table[width="700"], table[width="700"] p, table[width="700"] td, table[width="700"] font {line-height:170% !important;}
+table[width="700"] span, table[width="700"] div {line-height:170% !important;}
+</style>
 <style>
     html, body { height:100%; }
     body { display:flex; flex-direction:column; overflow:hidden; }
@@ -50,22 +67,45 @@
     main.article-scroll table { width:700px; margin-left:auto; margin-right:auto; border-spacing:2px; }
     main.article-scroll td { vertical-align:top; }
     main.article-scroll p { line-height:170%; }
-     .navigation a, .top-nav a {font-size:21px;} </style></head>
+     .navigation a, .top-nav a {font-size:21px;} .article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+</style><style>
+/* 2026-11-06: 本文位置と文字の最終統一（100番以降） */
+html {scroll-padding-top: 0;}
+body {font-size:21px; color:#703800; line-height:170%;}
+/* 固定領域の高さは既存のスクリプトが body の padding-top に設定する */
+body > main, body > .content-scroll, body > .article-scroll,
+body > table.article, body > table[width="700"] {
+ position:relative !important; top:auto !important; bottom:auto !important;
+ left:auto !important; right:auto !important;
+ margin-top:0 !important; padding-top:0 !important;
+ height:auto !important; min-height:0 !important;
+ overflow:visible !important;
+}
+body > main table, body > table.article, body > table[width="700"] {
+ font-size:21px !important; color:#703800 !important; line-height:170% !important;
+}
+body > main td, body > main p, body > main font,
+body > table.article td, body > table.article p, body > table.article font,
+body > table[width="700"] td, body > table[width="700"] p, body > table[width="700"] font {
+ font-size:21px !important; color:#703800 !important; line-height:170% !important;
+}
+.zare-fixed-shell .zare-menu a {font-size:21px !important;}
+.zare-fixed-shell .article-fixed-title {font-size:21px !important;line-height:170% !important;color:#703800 !important;}
+</style></head>
 <body>
-<nav aria-label="ページ内ナビゲーション" class="top-nav">
+<div class="zare-fixed-shell"><nav aria-label="ページ内ナビゲーション" class="zare-menu top-nav">
 <img alt="ロゴ" src="../../pic/oyalogos.gif"/>
 <a href="../../index.htm" target="_top">玄関に戻る</a>
 <a href="zare113.htm" target="_top">前に戻る</a>
 <a href="zare00.htm" target="_top">目次に戻る</a>
 <a href="zare115.htm" target="_top">次に進む</a>
-</nav>
-<main class="article-scroll"><table width="700" style="font-size:21px; line-height:170%; color:#703800;">
+</nav><div class="article-fixed-title"><span class="article-title-number">１１４．</span>「オーストラリアも製品品質は？」</div></div>
+<main class="article-scroll"><table style="font-size:21px; line-height:170%; color:#703800;" width="700">
 <tr>
 <td width="50"></td>
-<td width="650"><p style="line-height:170%">
-<br/>１１４．「オーストラリアも製品品質は？」
-<br/><br/>
-　オーストラリアに赴任し、半年後とに休暇を取れた。初めての休暇に家族でパースに行き、家族一緒での海外旅行気分（本当はオ
+<td width="650">
+<p style="line-height:170%">
+オーストラリアに赴任し、半年後とに休暇を取れた。初めての休暇に家族でパースに行き、家族一緒での海外旅行気分（本当はオ
 ーストラリア国内旅行）を堪能した。パース市内中央部に位置する鉄道駅の近くに繁華街があり、御土産店もあった。この土産物
 店の隣に色々な小物を売っている店があったので、中を覗いてみた。<br/>
 天体望遠鏡、石類、おもちゃ、観光案内ビデオ等がずらりと並んでいた。この中にサンゴ礁で有名なグレートバリアリーフを紹介
@@ -99,5 +139,15 @@
 <br/><br/><br/><br/>
 </td>
 </tr>
-</table></main></body>
+</table></main><script>
+(function(){
+  const shell=document.querySelector('.zare-fixed-shell');
+  if(!shell)return;
+  function adjust(){document.body.style.paddingTop=(shell.getBoundingClientRect().height+8)+'px';}
+  window.addEventListener('load',adjust);
+  window.addEventListener('resize',adjust);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(adjust);
+  adjust();
+})();
+</script></body>
 </html>

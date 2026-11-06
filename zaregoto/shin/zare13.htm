@@ -18,7 +18,14 @@ body{background:#ffffcc url('../../jujisei/shashin/note01.gif') repeat;color:#00
 .fixed-nav img{display:block;}
 main{padding-top:var(--nav-height,56px);border:0;}
 main table{font-size:13pt;}
- .navigation a, .top-nav a {font-size:21px;} </style></head>
+ .navigation a, .top-nav a {font-size:21px;} 
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+.article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+</style></head>
 <body><header class="fixed-nav" id="fixed-nav">
 <div class="nav-item"><img alt="ロゴ" src="../../pic/oyalogos.gif"/></div>
 <div class="nav-item"><a href="../../index.htm">玄関に戻る</a></div>
@@ -30,10 +37,10 @@ main table{font-size:13pt;}
 <table style="margin-left:auto;margin-right:auto;text-align:left;" width="700">
 <tr>
 <td style="text-align:left;" width="50"></td>
-<td style="text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><p style="line-height: 170%;text-align:left;">
+<td style="text-align:left;" width="650"><font style="font-size:21px; color:#703800;"><div class="article-fixed-title"><span class="article-title-number">１３．</span>「ローマでは安ホテルに泊まってしまった」</div>
+
 <p style="line-height: 170%;text-align:left;">
-<br/>１３．「ローマでは安ホテルに泊まってしまった」
-<br/><br/>
+
 ナポリからローマに戻りホテルを探すことにする、何故かポン引きが居てホテルを紹介してくれそうな
 気がしていた。やはり居た。一泊３千円、シングルで共用トイレにお風呂とのこと。アレキサンドリア
 （イスカンダリア）の宿舎でも共用トイレに共用お風呂なので気にしなかった。例のポン引きは丁寧に
@@ -55,10 +62,25 @@ main table{font-size:13pt;}
 観光で疲れると探す元気はなくなる。また安ホテルに泊まるの繰り返しで３泊してしまった。そしてフローレンス
 (フィレンツエ)に列車で向かうことになる。
 <br/><br/><br/><br/><br/>
-</p></p></font></td>
+</p></font></td>
 </tr>
 </table>
 </main>
 <script>
 (function(){const nav=document.getElementById('fixed-nav');function adjust(){document.documentElement.style.setProperty('--nav-height',nav.getBoundingClientRect().height+'px');}window.addEventListener('load',adjust);window.addEventListener('resize',adjust);adjust();})();
+</script><script>
+(function(){
+  const title=document.querySelector('.article-fixed-title');
+  const nav=document.getElementById('fixed-nav')||document.querySelector('.fixed-nav');
+  const main=document.querySelector('main');
+  if(!title||!main)return;
+  function adjustTitle(){
+    const navHeight=nav?nav.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--nav-height',navHeight+'px');
+    main.style.paddingTop=(navHeight+title.getBoundingClientRect().height+8)+'px';
+  }
+  window.addEventListener('load',adjustTitle);
+  window.addEventListener('resize',adjustTitle);
+  adjustTitle();
+})();
 </script></body></html>

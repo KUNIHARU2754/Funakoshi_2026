@@ -11,19 +11,37 @@
 html,body{height:100%;margin:0}body{background:#ffffcc url("../../jujisei/shashin/note01.gif") repeat;display:flex;flex-direction:column}
 .topnav{flex:none;display:flex;justify-content:center;align-items:center;gap:18px;padding:6px 0;font-size:13pt;white-space:nowrap}
 .topnav img{vertical-align:middle}.content{flex:1;overflow-y:auto;min-height:0}.content table{margin-left:auto;margin-right:auto}
- .navigation a, .top-nav a {font-size:21px;} </style></head><body><nav aria-label="ページ案内" class="topnav">
+ .navigation a, .top-nav a {font-size:21px;} 
+.article-fixed-title{position:fixed;top:var(--nav-height,56px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:700px;max-width:calc(100vw - 48px);z-index:99;background:#ffffcc url("../files/notes.jpg");font-size:21px;line-height:170%;text-align:left;padding:3px 0;}
+.article-title-number{display:inline-block;margin-right:0.25em;white-space:nowrap;}
+
+/* 11番以降: 本文と題目の左端・ナビ文字を統一 */
+.article-fixed-title{margin-left:50px;}
+.fixed-nav a,.fixed-nav a:link,.fixed-nav a:visited{font-size:21px;}
+
+/* 21番以降: 上部メニューと題目を一体化して固定 */
+.zare-fixed-shell{position:fixed;top:0;left:0;right:0;z-index:1000;background:#ffffcc url("../files/notes.jpg") repeat;}
+.zare-fixed-shell .zare-menu{position:relative;top:auto;z-index:auto;font-size:21px;}
+.zare-fixed-shell .zare-menu a,.zare-fixed-shell .zare-menu a:link,.zare-fixed-shell .zare-menu a:visited{font-size:21px !important;line-height:170%;}
+.zare-fixed-shell .article-fixed-title{position:relative;top:auto;left:auto;transform:none;z-index:auto;box-sizing:border-box;width:650px;max-width:none;margin-left:max(0px,calc(50% - 300px));padding:3px 0;background:#ffffcc url("../files/notes.jpg") repeat;color:#703800;font-size:21px;line-height:170%;}
+
+body{display:block !important;overflow:visible !important;height:auto !important;}main,main.content,main.article-scroll,.content-scroll{overflow:visible !important;height:auto !important;min-height:0 !important;padding-top:0 !important;}
+
+/* 本文の行間を全ページで170%に統一 */
+main, main p, main td, main font, .article, .article p, .article td, .article font, table[width="700"], table[width="700"] p, table[width="700"] td, table[width="700"] font {line-height:170% !important;}
+table[width="700"] span, table[width="700"] div {line-height:170% !important;}
+</style></head><body><div class="zare-fixed-shell"><nav aria-label="ページ案内" class="zare-menu topnav">
 <img alt="ロゴ" src="../../pic/oyalogos.gif"/>
 <a href="../../index.htm">玄関に戻る</a>
 <a href="zare80.htm">前に戻る</a>
 <a href="../frame/zare00f.htm">目次に戻る</a>
 <a href="zare82.htm">次に進む</a>
-</nav><main class="content"><table style="margin-left:auto;margin-right:auto;" width="700">
+</nav><div class="article-fixed-title"><span class="article-title-number">８１．</span>「会社でのみ頭痛がする。」(エジプト)</div></div><main class="content"><table style="margin-left:auto;margin-right:auto;" width="700">
 <tr>
 <td width="50"></td>
-<td width="650"><font style="font-size:21px; color:#703800;"><p style="line-height:170%; text-align:left;">
-<br/>８１．「会社でのみ頭痛がする。」(エジプト)
-<br/><br/>
-　海外赴任単身生活ではそれなりに分からないところでストレスが溜まっていく。これも個人差があり解決策
+<td width="650"><font style="font-size:21px; color:#703800;">
+<p style="line-height:170%; text-align:left;">
+海外赴任単身生活ではそれなりに分からないところでストレスが溜まっていく。これも個人差があり解決策
 も様々であると思う、お酒で発散する人はお酒の量がどんどん増えていったりする。日本人が２００名も赴任
 すると何人かはノイローゼになり脱落し帰国する人が現れた。<br/>
 　そんな中私は頭痛が始まった。これがストレスから来るものとは中々気が付かない。頭痛がするようになっ
@@ -41,4 +59,14 @@ html,body{height:100%;margin:0}body{background:#ffffcc url("../../jujisei/shashi
 <br/><br/><br/><br/>
 </p></font></td>
 </tr>
-</table></main></body></html>
+</table></main><script>
+(function(){
+  const shell=document.querySelector('.zare-fixed-shell');
+  if(!shell)return;
+  function adjust(){document.body.style.paddingTop=(shell.getBoundingClientRect().height+8)+'px';}
+  window.addEventListener('load',adjust);
+  window.addEventListener('resize',adjust);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(adjust);
+  adjust();
+})();
+</script></body></html>
